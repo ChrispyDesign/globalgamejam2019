@@ -12,10 +12,10 @@ namespace TeamFingerGuns_GGJ
 {
     class Program
     {
-        public static string customer_key = "ZI1YT2bZYLuHpni6j0yuJu67F";
-        public static string customer_key_secret = "1Yyr6FtX73Gd6RNCmySSV2zkMrKrZTnToiE5Wz3NAVlsiaRho4";
-        public static string access_token = "767220787-0lDesDaXn2RkZpmEORskO0JhR7YOXiDkeOOrgAAA";
-        public static string access_token_secret = "f7uWd2G98mlMgE05uA1mKIwvdkS3LODKn6p8CemV5PJbs";
+        public static string customer_key = "MST4X6tD1aS0NbYjAcSziGllE";
+        public static string customer_key_secret = "fUEH4c6DHB2U84PXjSAhgUX4sppsvj73NxNMC9CEdpxh5pLBrW";
+        public static string access_token = "3008164495-zwSuzmfJUCWbQx8oVKZRBZTP01eLKoXEPe5zZfO";
+        public static string access_token_secret = "wgUpq1dCC09PyLNhyOxdLJpnlcU3CpfsB35sR2T8nfoz0";
         public static List<TwitterStatus> m_retweetList = new List<TwitterStatus>();
         public static int m_currentUser = 0;
         public static long m_gameTweetID = 0;
@@ -71,7 +71,7 @@ namespace TeamFingerGuns_GGJ
 
             urlToSend = "http://ggj.fsh.zone/?id=" + s;
         }
-
+        
         static long SendTweet(string TweetText)
         {
             service.SendTweet(new SendTweetOptions { Status = TweetText }, (tweet, response) =>
@@ -124,7 +124,7 @@ namespace TeamFingerGuns_GGJ
             {
                 RetweetsOptions retweets = new RetweetsOptions();
                 retweets.Id = idnum;
-                retweets.Count = 1;
+                retweets.Count = 100;
                 var result = service.Retweets(retweets, (Retweets, response) =>
                 {
                     if (response.StatusCode == System.Net.HttpStatusCode.OK)

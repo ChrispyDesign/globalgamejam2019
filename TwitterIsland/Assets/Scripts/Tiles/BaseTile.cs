@@ -6,7 +6,6 @@ public class BaseTile : MonoBehaviour
 
     private void Start()
     {
-        Debug.Log(GetAdjacentTiles().Count);
     }
 
     public List<BaseTile> GetAdjacentTiles(int casts = 12)

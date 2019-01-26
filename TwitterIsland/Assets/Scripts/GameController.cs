@@ -9,25 +9,23 @@ public class GameController : MonoBehaviour
     public static GameController instance = null;
 
     public static Dictionary<string, float> worldValues;
-    public Text airText;
+
+    public List<BaseTile> allTiles;
 
     private void Awake()
     {
         instance = this;
     }
 
-    private void Update()
+    private void Start()
     {
-        if (worldValues.ContainsKey("air"))
-            airText.text = string.Format("air: {0:0.0}", worldValues["air"]);
+        var tiles = GameObject.FindObjectsOfType<BaseTile>();
+        foreach(var t in tiles)
+            allTiles.Add((BaseTile)t);
     }
 
-    public void ChangeAir(float amt)
+    private void Update()
     {
-        if (worldValues.ContainsKey("air"))
-            worldValues["air"] += amt;
-
-        ToJson();
     }
 
     public string ToJson()
@@ -35,13 +33,7 @@ public class GameController : MonoBehaviour
         Dictionary<string, object> boop = new Dictionary<string, object>();
         boop.Add("worldValues", worldValues);
         string finalWorld = JsonConvert.SerializeObject(boop);
-        Debug.Log(finalWorld);
         return finalWorld;
-    }
-
-    string CleanJson(string s)
-    {
-        return s.Replace("\\\"", "\"");
     }
 
 }

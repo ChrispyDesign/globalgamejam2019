@@ -68,6 +68,7 @@
     <Compile Include="Assets\Scripts\SerializationHelper.cs" />
     <Compile Include="Assets\Scripts\ServerCommunication.cs" />
     <Compile Include="Assets\Scripts\Sound\SoundManager.cs" />
+    <Compile Include="Assets\Scripts\Start_Music.cs" />
     <Compile Include="Assets\Scripts\TestSound.cs" />
     <Compile Include="Assets\Scripts\Tiles\BaseTile.cs" />
     <Compile Include="Assets\Scripts\Tiles\CropTile.cs" />

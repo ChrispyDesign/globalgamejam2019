@@ -4,10 +4,14 @@ using UnityEngine;
 
 public class HuntAction : TileAction
 {
+    public void Start()
+    {
+
+    }
 
     public override void Setup()
     {
-        conditionals.Add(() => { return GameController.worldValues["animals"] > GameController.instance.m_fAnimalHealthValue; });
+        conditionals.Add(() => { return GameController.worldValues["animals"] > 0; });
     }
 
     public override void Perform(BaseTile onTile)

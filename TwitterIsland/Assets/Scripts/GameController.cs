@@ -311,7 +311,6 @@ public class GameController : MonoBehaviour
         return result;
     }
 
-    // fuck you bgabeg
     public int GetTreeCount()
     {
         int result = 0;

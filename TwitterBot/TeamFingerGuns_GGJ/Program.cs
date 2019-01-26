@@ -1,12 +1,9 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Timers;
 using TweetSharp;
 using System.IO;
 using System.Net;
+using System.Threading;
 
 namespace TeamFingerGuns_GGJ
 {
@@ -16,11 +13,16 @@ namespace TeamFingerGuns_GGJ
         public static string customer_key_secret = "fUEH4c6DHB2U84PXjSAhgUX4sppsvj73NxNMC9CEdpxh5pLBrW";
         public static string access_token = "3008164495-zwSuzmfJUCWbQx8oVKZRBZTP01eLKoXEPe5zZfO";
         public static string access_token_secret = "wgUpq1dCC09PyLNhyOxdLJpnlcU3CpfsB35sR2T8nfoz0";
+
         public static List<TwitterStatus> m_retweetList = new List<TwitterStatus>();
         public static int m_currentUser = 0;
         public static long m_gameTweetID = 0;
         public static string urlToSend;
         public static long idnum = 0;
+        public static string oldStream = "";
+        public static float m_timer = 0.5f;
+        public static bool m_timerStarted = false;
+        public static float m_ftimer;
 
         static TwitterService service = new TwitterService(
             customer_key, 
@@ -31,31 +33,43 @@ namespace TeamFingerGuns_GGJ
         static void Main(string[] args)
         {
             Console.WriteLine($"<{DateTime.Now}> - Bot Started!");
-
+            
             var startTimeSpan = TimeSpan.Zero;
-            var periodTimeSpan = TimeSpan.FromMinutes(0.3f);
+            var periodTimeSpan = TimeSpan.FromMinutes(m_timer);
 
             if (m_gameTweetID == 0)
                 m_gameTweetID = SendTweetWithPic("Game has started, retweet this to not be on my list");
-
 
             var timer = new System.Threading.Timer((e) =>
             {
                 GetPlayers();
                 GetURL();
 
-                if (m_currentUser < m_retweetList.Count)
+                WebClient wc = new WebClient();
+                Stream data = wc.OpenRead("http://ggj.fsh.zone/getcode");
+                StreamReader reader = new StreamReader(data);
+                string s = reader.ReadToEnd();
+                m_ftimer += m_timer * 60 * 1000;
+                if (oldStream != s || m_ftimer > 3600000)
                 {
-                    if (m_retweetList.Count > 0)
+                    if (m_currentUser < m_retweetList.Count)
                     {
-                        SendDM(m_retweetList[m_currentUser].User.Id, urlToSend);
+                        if (m_retweetList.Count > 0)
+                        {
+                            SendDM(m_retweetList[m_currentUser].User.Id, urlToSend);
 
-                        m_currentUser++;
+                            oldStream = s;
+                            m_ftimer = 0.0f;
+                            m_currentUser++;
+                        }
                     }
                 }
+                Console.WriteLine(m_ftimer);
+
+                data.Close();
+                reader.Close();
 
             }, null, startTimeSpan, periodTimeSpan);
-
             Console.Read();
         }
 

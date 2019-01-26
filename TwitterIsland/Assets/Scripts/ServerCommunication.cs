@@ -7,6 +7,8 @@ using UnityEngine;
 public class ServerCommunication : MonoBehaviour
 {
 
+    public static ServerCommunication instance = null;
+
     public string ourId = "";
 
     public string currentIdUrl = "http://ggj.fsh.zone/getcode";
@@ -15,7 +17,12 @@ public class ServerCommunication : MonoBehaviour
 
     private void Awake()
     {
+        instance = this;
         MakeIdCurrent();
+    }
+
+    private void Start()
+    {
         GetWorldState();
     }
 
@@ -55,6 +62,11 @@ public class ServerCommunication : MonoBehaviour
             // need to convert this into a new dictionary
             var values = JsonConvert.DeserializeObject<Dictionary<string, int>>(list["worldResources"].ToString());
             GameController.worldResources = values;
+        }
+        // and tiles
+        if(list.ContainsKey("tiles"))
+        {
+            GameController.instance.LoadTilesFromJson(list["tiles"].ToString());
         }
     }
 

@@ -96,7 +96,7 @@ public class ServerCommunication : MonoBehaviour
         // and tiles
         if(list.ContainsKey("tiles"))
         {
-            //GameController.instance.LoadTilesFromJson(list["tiles"].ToString());
+            GameController.instance.LoadTilesFromJson(list["tiles"].ToString());
         }
     }
 

@@ -3,9 +3,6 @@ using UnityEngine;
 
 public class BaseTile : MonoBehaviour
 {
-    private void Start()
-    {
-    }
 
     public List<BaseTile> GetAdjacentTiles(int casts = 12)
     {
@@ -35,6 +32,17 @@ public class BaseTile : MonoBehaviour
         }
 
         return result;
+    }
+
+    public string JsonStart()
+    {
+        return "{" + "\"pos\":" + SerializationHelper.VectorToJson(transform.position);
+    }
+    public string JsonEnd() { return "}"; }
+
+    public virtual string ToJson()
+    {
+        return JsonStart() + JsonEnd();
     }
 
 }

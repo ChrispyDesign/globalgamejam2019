@@ -49,6 +49,13 @@ public class ServerCommunication : MonoBehaviour
             var values = JsonConvert.DeserializeObject<Dictionary<string, float>>(list["worldValues"].ToString());
             GameController.worldValues = values;
         }
+        // grab resources too
+        if (list.ContainsKey("worldResources"))
+        {
+            // need to convert this into a new dictionary
+            var values = JsonConvert.DeserializeObject<Dictionary<string, int>>(list["worldResources"].ToString());
+            GameController.worldResources = values;
+        }
     }
 
     public void SendWorldState()

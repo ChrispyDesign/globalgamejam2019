@@ -4,5 +4,10 @@ using UnityEngine;
 
 public class GrassTile : BaseTile
 {
-    
+
+    public override string ToJson()
+    {
+        return base.ToJson();
+    }
+
 }

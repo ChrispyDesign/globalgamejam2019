@@ -5,4 +5,9 @@ using UnityEngine;
 public class WaterTile : BaseTile
 {
 
+    public override string ToJson()
+    {
+        return base.ToJson();
+    }
+
 }

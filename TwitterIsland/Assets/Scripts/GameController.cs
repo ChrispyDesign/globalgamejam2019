@@ -41,7 +41,7 @@ public class GameController : MonoBehaviour
     public float m_fGrowthLow;
 
     public List<BaseTile> allTiles;
-    public List<TileAction> allActions;
+    public Dictionary<string, TileAction> allActions;
 
     [Header("Friggen tiles dude")]
     public List<BaseTile> tilePrefabs;
@@ -76,7 +76,10 @@ public class GameController : MonoBehaviour
             if (tile != null)
             {
                 if (Input.GetMouseButtonDown(0))
-                    ReplaceTile(tile, "Forest");
+                {
+                    if (selectedAction != "")
+                        DoAction(tile);
+                }
             }
         }
     }
@@ -324,11 +327,37 @@ public class GameController : MonoBehaviour
 
     void SetupActions()
     {
-        allActions = new List<TileAction>();
-        allActions.Add(new HuntAction());
+        allActions = new Dictionary<string, TileAction>();
+        allActions.Add("hunt", new HuntAction());
 
-        foreach (var a in allActions)
+        foreach (var a in allActions.Values)
             a.Setup();
+    }
+
+    public string selectedAction = "";
+
+    // returns whether or not we're entering tile selection mode thing
+    public bool StartAction(string act)
+    {
+        if (!allActions.ContainsKey(act.ToLower()))
+            return false;
+
+        selectedAction = act.ToLower();
+
+        if(allActions[selectedAction].type == ActionType.SIMPLE_ACTION)
+        {
+            DoAction(null);
+            return false;
+        }
+        return true;
+    }
+
+    public void DoAction(BaseTile tile)
+    {
+        if(allActions.ContainsKey(selectedAction))
+            allActions[name].Perform(tile);
+
+        selectedAction = "";
     }
 
     public BaseTile GetTileVariation(string tileName)

@@ -1,9 +1,16 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
+public enum ActionType
+{
+    SIMPLE_ACTION,
+    TILE_ACTION
+}
+
 public abstract class TileAction
 {
 
+    public ActionType type = ActionType.SIMPLE_ACTION;
     protected List<System.Type> affectedTypes = new List<System.Type>();
     protected List<System.Func<bool>> conditionals = new List<System.Func<bool>>();
     protected int cost = 1;
@@ -25,6 +32,18 @@ public abstract class TileAction
     //}
 
     public abstract void Perform(BaseTile onTile);
+
+    public bool CanPerform(BaseTile t)
+    {
+        bool contains = false;
+        foreach(var f in affectedTypes)
+        {
+            if (f == t.GetType())
+                contains = true;
+        }
+
+        return contains && CanPerform();
+    }
 
     public bool CanPerform()
     {

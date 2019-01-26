@@ -7,7 +7,7 @@ public class HuntAction : TileAction
 
     public override void Setup()
     {
-        conditionals.Add(() => { return GameController.worldValues["animals"] > GameController.instance.m_fAnimalHealthValue; });
+        //conditionals.Add(() => { return GameController.worldValues["animals"] > GameController.instance.m_fAnimalHealthValue; });
     }
 
     public override void Perform(BaseTile onTile)

@@ -68,6 +68,7 @@
     <Compile Include="Assets\Scripts\RandomTileGenerator.cs" />
     <Compile Include="Assets\Scripts\SerializationHelper.cs" />
     <Compile Include="Assets\Scripts\ServerCommunication.cs" />
+    <Compile Include="Assets\Scripts\Sound\SoundManager.cs" />
     <Compile Include="Assets\Scripts\Tiles\BaseTile.cs" />
     <Compile Include="Assets\Scripts\Tiles\CropTile.cs" />
     <Compile Include="Assets\Scripts\Tiles\GrassTile.cs" />

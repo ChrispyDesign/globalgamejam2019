@@ -49,7 +49,7 @@ public abstract class BaseTile : MonoBehaviour
 
     public string JsonStart()
     {
-        return "{" + "\"pos\":" + SerializationHelper.VectorToJson(transform.position);
+        return "{" + "\"type\":\"" + GetPrefabName() + "\"," +  "\"pos\":" + SerializationHelper.VectorToJson(transform.position);
     }
     public string JsonEnd() { return "}"; }
 

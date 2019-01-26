@@ -1,7 +1,6 @@
 ﻿using Newtonsoft.Json;
+using System.Collections;
 using System.Collections.Generic;
-using System.IO;
-using System.Net;
 using UnityEngine;
 
 public class ServerCommunication : MonoBehaviour
@@ -31,42 +30,51 @@ public class ServerCommunication : MonoBehaviour
     private void Awake()
     {
         instance = this;
-        MakeIdCurrent();
+        StartCoroutine(MakeIdCurrent());
     }
 
     private void Start()
     {
-        GetWorldState();
+        instance = this;
+        StartCoroutine(GetWorldState());
     }
 
-    void MakeIdCurrent()
+    IEnumerator MakeIdCurrent()
     {
-        WebClient wc = new WebClient();
-
-        Stream data = wc.OpenRead(currentIdUrl);
-        StreamReader reader = new StreamReader(data);
-        ourId = reader.ReadToEnd();
-        data.Close();
-        reader.Close();
+        using (WWW www = new WWW(currentIdUrl))
+        {
+            yield return www;
+            ourId = www.text;
+        }
     }
 
-    void GetWorldState()
+    IEnumerator GetWorldState()
     {
-        WebClient wc = new WebClient();
+        //WebClient wc = new WebClient();
 
-        Stream data = wc.OpenRead(worldStateUrl);
-        StreamReader reader = new StreamReader(data);
-        string s = reader.ReadToEnd();
-        data.Close();
-        reader.Close();
+        //Stream data = wc.OpenRead(worldStateUrl);
+        //StreamReader reader = new StreamReader(data);
+        //string s = reader.ReadToEnd();
+        //data.Close();
+        //reader.Close();
+
+        string s = "";
+        using (WWW www = new WWW(worldStateUrl))
+        {
+            yield return www;
+            s = www.text;
+        }
 
         var list = JsonConvert.DeserializeObject<Dictionary<string, object>>(s);
 
-        if(!list.ContainsKey("worldValues"))
+        if (!list.ContainsKey("worldValues"))
         {
             // "humans", "food", "atmosphere", "soil", "animals", "buildings","crops","trees"
             // generate a new world
             // stuff
+            GameController.worldValues = new Dictionary<string, float>();
+            GameController.worldResources = new Dictionary<string, int>();
+
             GameController.worldValues.Add("humans", m_fHumanHealth);
             GameController.worldValues.Add("food", m_fFood);
             GameController.worldValues.Add("atmosphere", m_fAtmosphereHealth);
@@ -76,7 +84,7 @@ public class ServerCommunication : MonoBehaviour
             GameController.worldResources.Add("wood", m_nWood);
             GameController.worldResources.Add("stone", m_nStone);
 
-            return;
+            yield break;
         }
 
         // grab main world parameters from json
@@ -94,7 +102,7 @@ public class ServerCommunication : MonoBehaviour
             GameController.worldResources = values;
         }
         // and tiles
-        if(list.ContainsKey("tiles"))
+        if (list.ContainsKey("tiles"))
         {
             GameController.instance.LoadTilesFromJson(list["tiles"].ToString());
         }
@@ -102,28 +110,30 @@ public class ServerCommunication : MonoBehaviour
 
     public void SendWorldState()
     {
-        WebClient wc = new WebClient();
+        StartCoroutine(_SendWorldState());
+    }
 
+    IEnumerator _SendWorldState()
+    {
         string ourUrl = worldFinishedUrl + "?id=" + ourId + "&data=" + GameController.instance.ToJson();
-
-        Stream data = wc.OpenRead(ourUrl);
-        StreamReader reader = new StreamReader(data);
-        //string s = reader.ReadToEnd();
-        data.Close();
-        reader.Close();
+        using (WWW www = new WWW(ourUrl))
+        {
+            yield return www;
+        }
     }
 
     public void ResetWorld()
     {
-        WebClient wc = new WebClient();
+        StartCoroutine(_ResetWorld());
+    }
 
+    IEnumerator _ResetWorld()
+    {
         string ourUrl = worldFinishedUrl + "?id=" + ourId + "&data=";
-
-        Stream data = wc.OpenRead(ourUrl);
-        StreamReader reader = new StreamReader(data);
-        //string s = reader.ReadToEnd();
-        data.Close();
-        reader.Close();
+        using(WWW www = new WWW(ourUrl))
+        {
+            yield return www;
+        }
     }
 
 }

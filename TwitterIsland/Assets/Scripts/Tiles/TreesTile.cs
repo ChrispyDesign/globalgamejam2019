@@ -64,7 +64,7 @@ public class TreesTile : BaseTile
         return result;
     }
 
-    private void UpdateTrees()
+    public void UpdateTrees()
     {
         SetTreesGrowth(group1, GetPrefabs(growth1));
         SetTreesGrowth(group2, GetPrefabs(growth2));

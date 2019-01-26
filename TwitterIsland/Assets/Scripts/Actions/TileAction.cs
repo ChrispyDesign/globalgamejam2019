@@ -5,7 +5,7 @@ public abstract class TileAction
 {
 
     protected List<System.Type> affectedTypes = new List<System.Type>();
-    protected List<System.Func<bool>> conditionals;
+    protected List<System.Func<bool>> conditionals = new List<System.Func<bool>>();
     protected int cost = 1;
 
     public abstract void Setup();

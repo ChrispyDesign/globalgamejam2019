@@ -5,6 +5,8 @@ using UnityEngine;
 public class GameController : MonoBehaviour
 {
 
+    public UnityEngine.UI.Button huntButton;
+
     public BaseTile tilePrefab;
 
     public int actionPoints = 5;
@@ -44,10 +46,13 @@ public class GameController : MonoBehaviour
     [Header("Friggen tiles dude")]
     public List<BaseTile> tilePrefabs;
 
+    Camera cam;
+
     private void Awake()
     {
-        SetupActions();
+        cam = Camera.main;
         instance = this;
+        SetupActions();
     }
 
     private void Start()
@@ -59,6 +64,21 @@ public class GameController : MonoBehaviour
 
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Space))
+            ServerCommunication.instance.SendWorldState();
+
+        Ray r = cam.ScreenPointToRay(Input.mousePosition);
+        RaycastHit[] hits = Physics.RaycastAll(r, 999.9f);
+
+        foreach (var h in hits)
+        {
+            BaseTile tile = h.collider.GetComponent<BaseTile>();
+            if (tile != null)
+            {
+                if (Input.GetMouseButtonDown(0))
+                    ReplaceTile(tile, "Forest");
+            }
+        }
     }
 
     public void GetAllTiles()
@@ -83,12 +103,12 @@ public class GameController : MonoBehaviour
                 worldValues["humans"] += worldValues["food"] * m_fHumanHealthValue;
                 worldValues["food"] += worldValues["humans"] * m_fFoodValue;
             }
-            else if(worldValues["food"] > m_fLow)
+            else if (worldValues["food"] > m_fLow)
             {
                 worldValues["humans"] -= worldValues["food"] * m_fHumanHealthValue;
                 worldValues["food"] += worldValues["humans"] * m_fFoodValue;
             }
-            else if(worldValues["food"] > 0.0f)
+            else if (worldValues["food"] > 0.0f)
             {
                 didWorldEnd = true;
             }
@@ -190,6 +210,13 @@ public class GameController : MonoBehaviour
         }
     }
 
+    // temp thing for testing the game loop
+    public void DoHunt()
+    {
+        allActions[0].Perform(null);
+        huntButton.interactable = allActions[0].CanPerform();
+    }
+
     public string ToJson()
     {
         Dictionary<string, object> boop = new Dictionary<string, object>();
@@ -206,7 +233,8 @@ public class GameController : MonoBehaviour
     {
         string s = "[";
         foreach (var t in allTiles)
-            s += t.ToJson() + ",";
+            if (t != null)
+                s += t.ToJson() + ",";
         s += "]";
 
         Debug.Log(s);
@@ -231,9 +259,10 @@ public class GameController : MonoBehaviour
         {
             BaseTile newTile = null;
 
+            string typeName = "";
             if (tile.ContainsKey("type"))
             {
-                string typeName = tile["type"].ToString();
+                typeName = tile["type"].ToString();
                 // grab any variation of this tile
                 BaseTile t = GetTileVariation(typeName);
                 if (t != null)
@@ -242,6 +271,25 @@ public class GameController : MonoBehaviour
 
             if (newTile == null)
                 newTile = Instantiate(GetTileVariation("Grass"));
+
+            if (typeName.Length > 0)
+            {
+                switch (typeName)
+                {
+                    case "Forest":
+                        TreesTile t = (TreesTile)newTile;
+                        try
+                        {
+                            t.growth1 = int.Parse(tile["g1"].ToString());
+                            t.growth2 = int.Parse(tile["g2"].ToString());
+                            t.growth3 = int.Parse(tile["g3"].ToString());
+                            t.growthTurns = int.Parse(tile["growth"].ToString());
+                        }
+                        catch (System.Exception ) { }
+                        t.UpdateTrees();
+                        break;
+                }
+            }
 
             // get position
             Vector3 tilePos = SerializationHelper.JsonToVector(tile["pos"].ToString());
@@ -268,7 +316,7 @@ public class GameController : MonoBehaviour
     {
         int result = 0;
         var treez = GetTiles(typeof(TreesTile));
-        foreach(var o in treez)
+        foreach (var o in treez)
             ((TreesTile)o).GetTreeCount();
         return result;
     }
@@ -329,6 +377,7 @@ public class GameController : MonoBehaviour
         Vector3 pos = tile.transform.position;
         Destroy(tile.gameObject);
         Instantiate(newVar, pos, Quaternion.identity);
+        GetAllTiles();
     }
 
 }

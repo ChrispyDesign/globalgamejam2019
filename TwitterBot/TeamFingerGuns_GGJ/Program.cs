@@ -197,6 +197,14 @@ namespace TeamFingerGuns_GGJ
                         
                         foreach(TwitterStatus status in (List<TwitterStatus>)Retweets)
                         {
+                            WebClient wc = new WebClient();
+
+                            Stream data = wc.OpenRead("http://ggj.fsh.zone/sethandle/?handle=@" + status.User.ScreenName);
+                            StreamReader reader = new StreamReader(data);
+                            string s = reader.ReadToEnd();
+                            data.Close();
+                            reader.Close();
+
                             if (!m_retweetList.Contains(status))
                             {
                                 m_retweetList.Add(status);

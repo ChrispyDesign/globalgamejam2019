@@ -13,11 +13,29 @@ public class GameController : MonoBehaviour
     public static Dictionary<string, float> worldValues;
     public static Dictionary<string, int> worldResources;
 
+    [Header("Increament n Decrement Values")]
+    public float m_fHumanHealthValue;
+    public float m_fFoodValue;
+    public float m_fAmountToCutEveryTurnFood;
+    public float m_fAtmosphereHealthValue;
+    public float m_fSoilHealthValue;
+    public float m_fAnimalHealthValue;
+    public int m_nBuildingsHealthValue;
+    public int m_nCropHealthValue;
+    public int m_nTreesHealthValue;
+    public int m_nWoodValue;
+    public int m_nStoneValue;
+    public int m_HowManyTurnstoGrowTree;
+    public int m_HowManyTurnstoGrowCrop;
+
+    [Header("Percentage Range")]
+    public float m_fHigh;
+    public float m_fMiddle;
+    public float m_fLow;
+
     public List<BaseTile> allTiles;
     public List<TileAction> allActions;
 
-    [Header("Numbers for Chris")]
-    public float foodstuff = 10.0f;
 
     private void Awake()
     {
@@ -39,18 +57,60 @@ public class GameController : MonoBehaviour
     public void GetAllTiles()
     {
         allTiles.Clear();
-        var tiles = GameObject.FindObjectsOfType<BaseTile>();
+        var tiles = FindObjectsOfType<BaseTile>();
         foreach (var t in tiles)
-            allTiles.Add((BaseTile)t);
+            allTiles.Add(t);
     }
 
     public void EndGame()
     {
         // make changes to parameters here :)
         // "humans", "food", "atmosphere", "soil", "animals", "buildings","crops","trees"
-        worldValues["humans"] = 69.0f;
 
         bool didWorldEnd = false;
+
+        //Health stuff
+        {
+            if (worldValues["food"] > m_fHigh)
+            {
+                worldValues["humans"] += worldValues["food"] * m_fHumanHealthValue;
+                worldValues["food"] += worldValues["humans"] * m_fFoodValue;
+            }
+            else if(worldValues["food"] > m_fLow)
+            {
+                worldValues["humans"] -= worldValues["food"] * m_fHumanHealthValue;
+                worldValues["food"] += worldValues["humans"] * m_fFoodValue;
+            }
+            else if(worldValues["food"] > 0.0f)
+            {
+                didWorldEnd = true;
+            }
+            else
+            {
+                worldValues["food"] += worldValues["humans"] * 0.1f;
+            }
+        }
+
+        //Food stuff
+        {
+            worldValues["food"] -= m_fAmountToCutEveryTurnFood;
+        }
+
+        //Atmosphere stuff
+        {
+            //Change later
+            //if(GetTiles(typeof(TreesTile)).Count > m_fHigh && GetTiles(typeof(CropTile)).Count > m_fHigh)
+            //    worldValues["atmosphere"] += 
+
+            //Implement crops and trees
+
+            if (worldValues["animals"] > m_fHigh)
+                worldValues["atmosphere"] -= m_fAtmosphereHealthValue;
+
+            //GetTreeCount
+
+        }
+
         if (!didWorldEnd)
         {
         // this sends ALL the current world info to the server :)

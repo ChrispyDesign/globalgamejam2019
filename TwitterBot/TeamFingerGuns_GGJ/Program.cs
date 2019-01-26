@@ -36,7 +36,7 @@ namespace TeamFingerGuns_GGJ
             var periodTimeSpan = TimeSpan.FromMinutes(0.3f);
 
             if (m_gameTweetID == 0)
-                m_gameTweetID = SendTweet("Game has started, retweet this to get on the list");
+                m_gameTweetID = SendTweetWithPic("Game has started, retweet this to not be on my list");
 
 
             var timer = new System.Threading.Timer((e) =>
@@ -54,7 +54,7 @@ namespace TeamFingerGuns_GGJ
                     }
                 }
 
-            }, null, startTimeSpan, periodTimeSpan);            
+            }, null, startTimeSpan, periodTimeSpan);
 
             Console.Read();
         }
@@ -71,7 +71,56 @@ namespace TeamFingerGuns_GGJ
 
             urlToSend = "http://ggj.fsh.zone/?id=" + s;
         }
-        
+
+        static long SendTweetWithPic(string TweetText)
+        {
+            using (var webClient = new WebClient())
+            {
+                webClient.DownloadFile(
+                    new Uri("https://media.discordapp.net/attachments/529114987717853196/538551571944964097/unknown.png"),
+                    "1.jpg");
+
+                Stream stream = webClient.OpenRead("1.jpg");
+
+                MediaFile media = new MediaFile();
+                media.Content = stream;
+                service.UploadMedia(new UploadMediaOptions() { Media = media }, (uploadMedia, response) => 
+                {
+                    if (response.StatusCode == System.Net.HttpStatusCode.OK)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.WriteLine($"<{DateTime.Now}> - Media Uploaded!");
+                        Console.ResetColor();
+                    }
+                    else
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine($"<{DateTime.Now}> - Media Not Uploaded! " + response.Errors);
+                        Console.ResetColor();
+                    }
+
+                    service.SendTweet(new SendTweetOptions { Status = TweetText, MediaIds = new string[] { uploadMedia.Media_Id } }, (tweet, response2) =>
+                    {
+                        if (response2.StatusCode == System.Net.HttpStatusCode.OK)
+                        {
+                            Console.ForegroundColor = ConsoleColor.Green;
+                            Console.WriteLine($"<{DateTime.Now}> - Tweet Sent!");
+                            Console.ResetColor();
+
+                            idnum = tweet.Id;
+                        }
+                        else
+                        {
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.WriteLine($"<{DateTime.Now}> - Tweet Not Sent! " + response.Errors);
+                            Console.ResetColor();
+                        }
+                    });
+                });               
+            }
+            return idnum;
+        }
+
         static long SendTweet(string TweetText)
         {
             service.SendTweet(new SendTweetOptions { Status = TweetText }, (tweet, response) =>

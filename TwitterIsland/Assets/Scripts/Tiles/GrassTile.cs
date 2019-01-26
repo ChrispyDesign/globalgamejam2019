@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class GrassTile : BaseTile
 {
-
     public List<GameObject> randomDecorations;
 
     private void Start()

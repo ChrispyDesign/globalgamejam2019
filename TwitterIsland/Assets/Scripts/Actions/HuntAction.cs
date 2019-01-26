@@ -7,15 +7,16 @@ public class HuntAction : TileAction
 
     public override void Setup()
     {
-        //conditionals.Add(() => { return GameController.worldValues["animals"] > GameController.instance.minimumAnimalsToHunt; });
+        conditionals.Add(() => { return GameController.worldValues["animals"] > GameController.instance.m_fAnimalHealthValue; });
     }
 
     public override void Perform(BaseTile onTile)
     {
         // give food
-        GameController.worldValues["food"] += 999999;
+        GameController.worldValues["food"] += GameController.instance.m_fFoodValue;
+
         // take away animals
-        GameController.worldValues["animals"] -= 999999;
+        GameController.worldValues["animals"] -= GameController.instance.m_fAnimalHealthValue;
     }
 
 }

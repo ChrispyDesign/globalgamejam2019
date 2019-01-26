@@ -15,6 +15,19 @@ public class ServerCommunication : MonoBehaviour
     public string worldStateUrl = "http://ggj.fsh.zone/getstate";
     public string worldFinishedUrl = "http://ggj.fsh.zone/update/";
 
+    // "humans", "food", "atmosphere", "soil", "animals", "buildings","crops","trees"
+    [Header("Default Values for WorldState OWO")]
+    public float m_fHumanHealth;
+    public float m_fFood;
+    public float m_fAtmosphereHealth;
+    public float m_fSoilHealth;
+    public float m_fAnimalHealth;
+    public int m_nBuildingsHealth;
+    public int m_nCropHealth;
+    public int m_nTreesHealth;
+    public int m_nWood;
+    public int m_nStone;
+
     private void Awake()
     {
         instance = this;
@@ -54,6 +67,15 @@ public class ServerCommunication : MonoBehaviour
             // "humans", "food", "atmosphere", "soil", "animals", "buildings","crops","trees"
             // generate a new world
             // stuff
+            GameController.worldValues.Add("humans", m_fHumanHealth);
+            GameController.worldValues.Add("food", m_fFood);
+            GameController.worldValues.Add("atmosphere", m_fAtmosphereHealth);
+            GameController.worldValues.Add("soil", m_fSoilHealth);
+            GameController.worldValues.Add("animals", m_fAnimalHealth);
+
+            GameController.worldResources.Add("wood", m_nWood);
+            GameController.worldResources.Add("stone", m_nStone);
+
             return;
         }
 

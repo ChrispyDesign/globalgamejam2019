@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 64751282446423830}
   - component: {fileID: 114607088025204932}
   m_Layer: 0
-  m_Name: Sawmill0 1
+  m_Name: Trees0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -139,3 +139,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c98636223610474ba785bfb72015541, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  decorationContainer: {fileID: 0}
+  cutPrefab: {fileID: 0}
+  grownPrefab: {fileID: 0}
+  growingPrefab: {fileID: 0}
+  treeObjects: []

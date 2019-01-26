@@ -39,7 +39,7 @@ GameObject:
   - component: {fileID: 64808781454368186}
   - component: {fileID: 114005701304437984}
   m_Layer: 0
-  m_Name: Grass0 (1)
+  m_Name: Sawmill0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -140,3 +140,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   decorationContainer: {fileID: 1330268663615040}
+  woodPerTree: 2
+  treesPerTurn: 1

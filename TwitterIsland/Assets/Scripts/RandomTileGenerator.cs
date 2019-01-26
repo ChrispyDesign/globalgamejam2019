@@ -15,15 +15,15 @@ public class RandomTileGenerator : MonoBehaviour {
 
     public void Generate()
     {
-        //if (pieces != null)
-        //{
-        //    foreach (var piece in pieces)
-        //    {
-        //        Destroy(piece);
-        //    }
+        if (pieces != null)
+        {
+            foreach (var piece in pieces)
+            {
+                Destroy(piece);
+            }
 
-        //    pieces.Clear();
-        //}
+            pieces.Clear();
+        }
 
         foreach (var points in spawnPoints)
         {

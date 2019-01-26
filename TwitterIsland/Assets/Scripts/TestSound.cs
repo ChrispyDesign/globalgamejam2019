@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TestSound : MonoBehaviour {
+public class TestSound : MonoBehaviour
+{
 
-	public void Test1()
+    public void Test1()
     {
         SoundManager.instance.Play("Action_Hunt");
     }

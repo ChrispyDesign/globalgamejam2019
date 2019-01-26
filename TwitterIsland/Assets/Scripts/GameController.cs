@@ -14,12 +14,14 @@ public class GameController : MonoBehaviour
     public static Dictionary<string, int> worldResources;
 
     public List<BaseTile> allTiles;
+    public List<TileAction> allActions;
 
     [Header("Numbers for Chris")]
     public float foodstuff = 10.0f;
 
     private void Awake()
     {
+        SetupActions();
         instance = this;
     }
 
@@ -108,6 +110,27 @@ public class GameController : MonoBehaviour
             newTile.transform.position = tilePos;
         }
         GetAllTiles();
+    }
+
+    public List<BaseTile> GetTiles(System.Type type)
+    {
+        List<BaseTile> result = new List<BaseTile>();
+
+        foreach(var t in allTiles)
+        {
+            if (t.GetType() == type)
+                result.Add(t);
+        }
+
+        return result;
+    }
+
+    void SetupActions()
+    {
+        allActions.Add(new HuntAction());
+
+        foreach(var a in allActions)
+            a.Setup();
     }
 
 }

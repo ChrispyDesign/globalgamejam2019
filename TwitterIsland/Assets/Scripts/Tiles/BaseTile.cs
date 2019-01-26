@@ -36,6 +36,8 @@ public class BaseTile : MonoBehaviour
         return result;
     }
 
+    public virtual void ProcessEndOfTurn() { }
+
     public void ResetDecorations()
     {
         foreach(Transform t in decorationContainer.transform)

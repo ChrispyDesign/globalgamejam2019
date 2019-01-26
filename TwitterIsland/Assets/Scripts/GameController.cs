@@ -48,9 +48,18 @@ public class GameController : MonoBehaviour
         // "humans", "food", "atmosphere", "soil", "animals", "buildings","crops","trees"
         worldValues["humans"] = 69.0f;
 
+        bool didWorldEnd = false;
+        if (!didWorldEnd)
+        {
         // this sends ALL the current world info to the server :)
-        GetAllTiles();
-        ServerCommunication.instance.SendWorldState();
+            GetAllTiles();
+            ServerCommunication.instance.SendWorldState();
+        }
+        else
+        {
+            // erase everything from the server so we can re-generate it next time :)
+            ServerCommunication.instance.ResetWorld();
+        }
     }
 
     public string ToJson()

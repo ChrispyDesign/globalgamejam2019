@@ -49,6 +49,14 @@ public class ServerCommunication : MonoBehaviour
 
         var list = JsonConvert.DeserializeObject<Dictionary<string, object>>(s);
 
+        if(!list.ContainsKey("worldValues"))
+        {
+            // "humans", "food", "atmosphere", "soil", "animals", "buildings","crops","trees"
+            // generate a new world
+            // stuff
+            return;
+        }
+
         // grab main world parameters from json
         if (list.ContainsKey("worldValues"))
         {
@@ -75,6 +83,19 @@ public class ServerCommunication : MonoBehaviour
         WebClient wc = new WebClient();
 
         string ourUrl = worldFinishedUrl + "?id=" + ourId + "&data=" + GameController.instance.ToJson();
+
+        Stream data = wc.OpenRead(ourUrl);
+        StreamReader reader = new StreamReader(data);
+        //string s = reader.ReadToEnd();
+        data.Close();
+        reader.Close();
+    }
+
+    public void ResetWorld()
+    {
+        WebClient wc = new WebClient();
+
+        string ourUrl = worldFinishedUrl + "?id=" + ourId + "&data=";
 
         Stream data = wc.OpenRead(ourUrl);
         StreamReader reader = new StreamReader(data);

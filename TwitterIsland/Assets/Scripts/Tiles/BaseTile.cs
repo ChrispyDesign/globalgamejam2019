@@ -4,6 +4,8 @@ using UnityEngine;
 public class BaseTile : MonoBehaviour
 {
 
+    public GameObject decorationContainer;
+
     public List<BaseTile> GetAdjacentTiles(int casts = 12)
     {
         List<BaseTile> result = new List<BaseTile>();
@@ -32,6 +34,12 @@ public class BaseTile : MonoBehaviour
         }
 
         return result;
+    }
+
+    public void ResetDecorations()
+    {
+        foreach(Transform t in decorationContainer.transform)
+            Destroy(t.gameObject);
     }
 
     public string JsonStart()

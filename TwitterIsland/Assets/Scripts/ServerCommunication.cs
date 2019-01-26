@@ -13,6 +13,7 @@ public class ServerCommunication : MonoBehaviour
     public string currentIdUrl = "http://ggj.fsh.zone/getcode";
     public string worldStateUrl = "http://ggj.fsh.zone/getstate";
     public string worldFinishedUrl = "http://ggj.fsh.zone/update/";
+    public string twitterHandleUrl = "http://ggj.fsh.zone/gethandle/";
 
     // "humans", "food", "atmosphere", "soil", "animals", "buildings","crops","trees"
     [Header("Default Values for WorldState OWO")]
@@ -67,7 +68,7 @@ public class ServerCommunication : MonoBehaviour
 
         var list = JsonConvert.DeserializeObject<Dictionary<string, object>>(s);
 
-        if (!list.ContainsKey("worldValues"))
+        if (list == null || !list.ContainsKey("worldValues"))
         {
             // "humans", "food", "atmosphere", "soil", "animals", "buildings","crops","trees"
             // generate a new world
@@ -83,6 +84,9 @@ public class ServerCommunication : MonoBehaviour
 
             GameController.worldResources.Add("wood", m_nWood);
             GameController.worldResources.Add("stone", m_nStone);
+
+            // generate world
+            GameController.instance.Gener8World();
 
             yield break;
         }
@@ -133,6 +137,21 @@ public class ServerCommunication : MonoBehaviour
         using(WWW www = new WWW(ourUrl))
         {
             yield return www;
+        }
+    }
+
+    public void SetHandle()
+    {
+        StartCoroutine(_SetHandle());
+    }
+
+    IEnumerator _SetHandle()
+    {
+        string ourUrl = twitterHandleUrl;
+        using(WWW www = new WWW(ourUrl))
+        {
+            yield return www;
+            GameController.ourHandle = www.text;
         }
     }
 

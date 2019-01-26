@@ -6,11 +6,13 @@ public class RandomTileGenerator : MonoBehaviour {
 
     public List<Transform> spawnPoints;
     public List<GameObject> tiles;
+    public List<string> tileNames;
     public List<GameObject> pieces;
 
     private void Start()
     {
-        Generate();
+        // don't generate on start - the game controller will handle it if we need to generate
+        //Generate();
     }
 
     public void Generate()
@@ -27,11 +29,9 @@ public class RandomTileGenerator : MonoBehaviour {
 
         foreach (var points in spawnPoints)
         {
-
-            int tileNumber = Random.Range(0, tiles.Count);
-            GameObject piece = Instantiate(tiles[tileNumber], points.position, points.rotation);
+            var toInstantiate = GameController.instance.GetTileVariation(tileNames[Random.Range(0, tileNames.Count)]);
+            BaseTile piece = Instantiate(toInstantiate, points.position, points.rotation);
             pieces.Add(piece.gameObject);
-
         }
 
     }

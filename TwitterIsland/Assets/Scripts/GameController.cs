@@ -5,15 +5,15 @@ using UnityEngine;
 public class GameController : MonoBehaviour
 {
 
-    public UnityEngine.UI.Button huntButton;
-
-    public BaseTile tilePrefab;
-
     public int actionPoints = 5;
+    public static string ourHandle = "loading...";
     public static GameController instance = null;
 
     public static Dictionary<string, float> worldValues;
     public static Dictionary<string, int> worldResources;
+
+    [Header("World Generation")]
+    public List<GameObject> riverPrefabs;
 
     [Header("Increament n Decrement Values")]
     public float m_fHumanHealthValue;
@@ -108,7 +108,7 @@ public class GameController : MonoBehaviour
                 worldValues["humans"] -= worldValues["food"] * m_fHumanHealthValue;
                 worldValues["food"] += worldValues["humans"] * m_fFoodValue;
             }
-            else if (worldValues["food"] > 0.0f)
+            else if (worldValues["food"] <= 0.0f)
             {
                 didWorldEnd = true;
             }
@@ -208,13 +208,6 @@ public class GameController : MonoBehaviour
             // erase everything from the server so we can re-generate it next time :)
             ServerCommunication.instance.ResetWorld();
         }
-    }
-
-    // temp thing for testing the game loop
-    public void DoHunt()
-    {
-        allActions[0].Perform(null);
-        huntButton.interactable = allActions[0].CanPerform();
     }
 
     public string ToJson()
@@ -338,7 +331,7 @@ public class GameController : MonoBehaviour
             a.Setup();
     }
 
-    BaseTile GetTileVariation(string tileName)
+    public BaseTile GetTileVariation(string tileName)
     {
         int count = GetTileVariationCount(tileName);
         string name = tileName + Random.Range(0, count);
@@ -377,6 +370,17 @@ public class GameController : MonoBehaviour
         Destroy(tile.gameObject);
         Instantiate(newVar, pos, Quaternion.identity);
         GetAllTiles();
+    }
+
+    public void Gener8World()
+    {
+        foreach (var t in allTiles)
+            Destroy(t.gameObject);
+
+        var newRiver = Instantiate(riverPrefabs[Random.Range(0, riverPrefabs.Count)]);
+        newRiver.transform.position = Vector3.zero;
+
+        newRiver.GetComponent<RandomTileGenerator>().Generate();
     }
 
 }

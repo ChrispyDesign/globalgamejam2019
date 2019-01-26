@@ -1,0 +1,109 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1433446634452936}
+  m_IsPrefabAsset: 1
+--- !u!1 &1433446634452936
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4712070358785004}
+  - component: {fileID: 114461802330158882}
+  - component: {fileID: 114458089052493526}
+  m_Layer: 0
+  m_Name: GameController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4712070358785004
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1433446634452936}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114458089052493526
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1433446634452936}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ccd8093f876d41a498e4b3f9e9f24545, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ourId: 
+  currentIdUrl: http://ggj.fsh.zone/getcode
+  worldStateUrl: http://ggj.fsh.zone/getstate
+  worldFinishedUrl: http://ggj.fsh.zone/update/
+  m_fHumanHealth: 50
+  m_fFood: 50
+  m_fAtmosphereHealth: 50
+  m_fSoilHealth: 50
+  m_fAnimalHealth: 50
+  m_nBuildingsHealth: 50
+  m_nCropHealth: 50
+  m_nTreesHealth: 50
+  m_nWood: 0
+  m_nStone: 0
+--- !u!114 &114461802330158882
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1433446634452936}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 323b4338725b7eb4bba921f3317665bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actionPoints: 5
+  riverPrefabs:
+  - {fileID: 1402536157455696, guid: d57d96db9d405ad4ea2484e9eecad9ef, type: 2}
+  m_fHumanHealthValue: 10
+  m_fFoodValue: 10
+  m_fAmountToCutEveryTurnFood: 0
+  m_fAtmosphereHealthValue: 10
+  m_fSoilHealthValue: 10
+  m_fAnimalHealthValue: 10
+  m_nBuildingsHealthValue: 10
+  m_nCropHealthValue: 10
+  m_nTreesHealthValue: 10
+  m_nWoodValue: 10
+  m_nStoneValue: 10
+  m_HowManyTurnstoGrowTree: 3
+  m_HowManyTurnstoGrowCrop: 4
+  m_fHigh: 0
+  m_fMiddle: 0
+  m_fLow: 0
+  m_fGrowthHigh: 0
+  m_fGrowthMiddle: 0
+  m_fGrowthLow: 0
+  allTiles: []
+  tilePrefabs:
+  - {fileID: 114381885228996778, guid: 34ecb2bf85b2fe045ade0e19512196d0, type: 2}
+  - {fileID: 114908633953399294, guid: 4fe31f900e7a83d43b567aa8f59de3dc, type: 2}
+  - {fileID: 114680774584271602, guid: 63e89b76bbdfc3440b48dad3117e6cc8, type: 2}
+  - {fileID: 114690652082000552, guid: 6350e64332048254b8d19e65e4c98e95, type: 2}
+  - {fileID: 114952497790366678, guid: 244dd3aaef598e5449bc7343dab39789, type: 2}
+  - {fileID: 114128487292765500, guid: 1247592ce144666489aaeebeab7371e6, type: 2}

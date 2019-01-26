@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class BaseTile : MonoBehaviour
 {
-
     private void Start()
     {
     }

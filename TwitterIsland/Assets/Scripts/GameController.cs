@@ -33,6 +33,11 @@ public class GameController : MonoBehaviour
     public float m_fMiddle;
     public float m_fLow;
 
+    [Header("Growth Range")]
+    public float m_fGrowthHigh;
+    public float m_fGrowthMiddle;
+    public float m_fGrowthLow;
+
     public List<BaseTile> allTiles;
     public List<TileAction> allActions;
 
@@ -100,17 +105,76 @@ public class GameController : MonoBehaviour
 
         //Atmosphere stuff
         {
-            //Change later
-            //if(GetTiles(typeof(TreesTile)).Count > m_fHigh && GetTiles(typeof(CropTile)).Count > m_fHigh)
-            //    worldValues["atmosphere"] += 
+            //Checking for crops and tree counts
+            {
+                if (GetTreeCount() > m_fHigh && GetCropCount() > m_fHigh)
+                    worldValues["atmosphere"] += (GetTreeCount() + GetCropCount()) * m_fAtmosphereHealthValue;
 
-            //Implement crops and trees
+                else if (GetTreeCount() > m_fHigh)
+                    worldValues["atmosphere"] += GetTreeCount() * m_fAtmosphereHealthValue;
 
+                else if (GetCropCount() > m_fHigh)
+                    worldValues["atmosphere"] += GetCropCount() * m_fAtmosphereHealthValue;
+
+                else if (GetTreeCount() < m_fHigh && GetCropCount() < m_fHigh)
+                    worldValues["atmosphere"] -= (GetTreeCount() + GetCropCount()) * m_fAtmosphereHealthValue;
+
+                else if (GetTreeCount() < m_fHigh)
+                    worldValues["atmosphere"] -= GetTreeCount() * m_fAtmosphereHealthValue;
+
+                else if (GetCropCount() < m_fHigh)
+                    worldValues["atmosphere"] -= GetCropCount() * m_fAtmosphereHealthValue;
+            }
+
+            //TODO add humans
+            // atmosphere according to animals
             if (worldValues["animals"] > m_fHigh)
                 worldValues["atmosphere"] -= m_fAtmosphereHealthValue;
 
-            //GetTreeCount
+            // Setting tree growth by atmosphere value
+            {
+                if (worldValues["atmosphere"] >= m_fHigh)
+                    m_HowManyTurnstoGrowTree = (int)m_fGrowthLow; 
 
+                else if (worldValues["atmosphere"] >= m_fMiddle && worldValues["atmosphere"] < m_fMiddle && worldValues["atmosphere"] > m_fLow)
+                    m_HowManyTurnstoGrowTree = (int)m_fGrowthMiddle;
+
+                else if (worldValues["atmosphere"] < m_fLow)
+                    m_HowManyTurnstoGrowTree = (int)m_fGrowthHigh;
+            }
+        }
+
+        //Soil Health
+        {
+            if (worldValues["animals"] > m_fHigh)
+                worldValues["soil"] += worldValues["animal"] * m_fSoilHealthValue; 
+            //Add buildings
+            else if(GetCropCount() > m_fHigh)
+                worldValues["soil"] -= GetCropCount() * m_fSoilHealthValue;
+
+            // Setting crop growth by atmosphere value
+            {
+                if (worldValues["soil"] >= m_fHigh)
+                    m_HowManyTurnstoGrowCrop = (int)m_fGrowthLow; 
+
+                else if (worldValues["soil"] >= m_fMiddle && worldValues["soil"] < m_fMiddle && worldValues["soil"] > m_fLow)
+                    m_HowManyTurnstoGrowCrop = (int)m_fGrowthMiddle;
+
+                else if (worldValues["soil"] < m_fLow)
+                    m_HowManyTurnstoGrowCrop = (int)m_fGrowthHigh;
+            }
+        }
+
+        //Animal Health
+        {
+            if (GetTreeCount() > m_fHigh)
+                worldValues["animals"] += GetTreeCount() * m_fHigh - m_fAnimalHealthValue;
+
+            if (GetTreeCount() > m_fLow)
+            {
+                worldValues["soil"] += worldValues["animals"] * m_fAnimalHealthValue;
+                worldValues["atmosphere"] -= worldValues["animals"] * m_fAnimalHealthValue;
+            }
         }
 
         if (!didWorldEnd)
@@ -206,6 +270,15 @@ public class GameController : MonoBehaviour
         var treez = GetTiles(typeof(TreesTile));
         foreach(var o in treez)
             ((TreesTile)o).GetTreeCount();
+        return result;
+    }
+
+    public int GetCropCount()
+    {
+        int result = 0;
+        var treez = GetTiles(typeof(CropTile));
+        result = treez.Count * 40;
+            
         return result;
     }
 

@@ -4,5 +4,8 @@ using UnityEngine;
 
 public class CropTile : BaseTile
 {
-
+    public override string GetPrefabName()
+    {
+        throw new System.NotImplementedException();
+    }
 }

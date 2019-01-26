@@ -63,6 +63,7 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Actions\HuntAction.cs" />
     <Compile Include="Assets\Scripts\Actions\TileAction.cs" />
+    <Compile Include="Assets\Scripts\Animal_Movement.cs" />
     <Compile Include="Assets\Scripts\GameController.cs" />
     <Compile Include="Assets\Scripts\RandomTileGenerator.cs" />
     <Compile Include="Assets\Scripts\SerializationHelper.cs" />

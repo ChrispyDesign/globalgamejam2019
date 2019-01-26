@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class BaseTile : MonoBehaviour
+public abstract class BaseTile : MonoBehaviour
 {
 
     public GameObject decorationContainer;
@@ -40,6 +40,9 @@ public class BaseTile : MonoBehaviour
 
     public void ResetDecorations()
     {
+        if (decorationContainer == null)
+            return;
+
         foreach(Transform t in decorationContainer.transform)
             Destroy(t.gameObject);
     }
@@ -54,5 +57,7 @@ public class BaseTile : MonoBehaviour
     {
         return JsonStart() + JsonEnd();
     }
+
+    public abstract string GetPrefabName();
 
 }

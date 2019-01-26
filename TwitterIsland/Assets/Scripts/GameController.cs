@@ -36,6 +36,8 @@ public class GameController : MonoBehaviour
     public List<BaseTile> allTiles;
     public List<TileAction> allActions;
 
+    [Header("Friggen tiles dude")]
+    public List<BaseTile> tilePrefabs;
 
     private void Awake()
     {
@@ -45,9 +47,9 @@ public class GameController : MonoBehaviour
 
     private void Start()
     {
-        GetAllTiles();
-        TilesToJson();
-        LoadTilesFromJson(TilesToJson());
+        //GetAllTiles();
+        //TilesToJson();
+        //LoadTilesFromJson(TilesToJson());
     }
 
     private void Update()
@@ -113,7 +115,7 @@ public class GameController : MonoBehaviour
 
         if (!didWorldEnd)
         {
-        // this sends ALL the current world info to the server :)
+            // this sends ALL the current world info to the server :)
             GetAllTiles();
             ServerCommunication.instance.SendWorldState();
         }
@@ -163,7 +165,19 @@ public class GameController : MonoBehaviour
 
         foreach (var tile in tiles)
         {
-            BaseTile newTile = Instantiate(tilePrefab);
+            BaseTile newTile = null;
+
+            if (tile.ContainsKey("type"))
+            {
+                string typeName = tile["type"].ToString();
+                // grab any variation of this tile
+                BaseTile t = GetTileVariation(typeName);
+                if (t != null)
+                    newTile = Instantiate(t);
+            }
+
+            if (newTile == null)
+                newTile = Instantiate(GetTileVariation("Grass"));
 
             // get position
             Vector3 tilePos = SerializationHelper.JsonToVector(tile["pos"].ToString());
@@ -176,7 +190,7 @@ public class GameController : MonoBehaviour
     {
         List<BaseTile> result = new List<BaseTile>();
 
-        foreach(var t in allTiles)
+        foreach (var t in allTiles)
         {
             if (t.GetType() == type)
                 result.Add(t);
@@ -185,12 +199,63 @@ public class GameController : MonoBehaviour
         return result;
     }
 
+    // fuck you bgabeg
+    public int GetTreeCount()
+    {
+        int result = 0;
+        var treez = GetTiles(typeof(TreesTile));
+        foreach(var o in treez)
+            ((TreesTile)o).GetTreeCount();
+        return result;
+    }
+
     void SetupActions()
     {
+        allActions = new List<TileAction>();
         allActions.Add(new HuntAction());
 
-        foreach(var a in allActions)
+        foreach (var a in allActions)
             a.Setup();
+    }
+
+    BaseTile GetTileVariation(string tileName)
+    {
+        int count = GetTileVariationCount(tileName);
+        string name = tileName + Random.Range(0, count);
+        foreach (var t in tilePrefabs)
+        {
+            if (t.name == name)
+                return t;
+        }
+        Debug.Log("NO tile variation of tile " + tileName);
+        return null;
+    }
+
+    int GetTileVariationCount(string tileName)
+    {
+        for (int i = 0; i < 999; ++i)
+        {
+            bool wasFound = false;
+            foreach (var t in tilePrefabs)
+            {
+                if (t.name == (tileName + i))
+                    wasFound = true;
+            }
+            if (!wasFound)
+                return i;
+        }
+        return 0;
+    }
+
+    public void ReplaceTile(BaseTile tile, string name)
+    {
+        var newVar = GetTileVariation(name);
+        if (newVar == null)
+            return;
+
+        Vector3 pos = tile.transform.position;
+        Destroy(tile.gameObject);
+        Instantiate(newVar, pos, Quaternion.identity);
     }
 
 }

@@ -61,7 +61,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Actions\ChopTreeAction.cs" />
+    <Compile Include="Assets\Scripts\Actions\HarvestCrop.cs" />
     <Compile Include="Assets\Scripts\Actions\HuntAction.cs" />
+    <Compile Include="Assets\Scripts\Actions\HutAction.cs" />
+    <Compile Include="Assets\Scripts\Actions\PlantCropAction.cs" />
     <Compile Include="Assets\Scripts\Actions\PlantTreeAction.cs" />
     <Compile Include="Assets\Scripts\Actions\TileAction.cs" />
     <Compile Include="Assets\Scripts\Animal_Movement.cs" />

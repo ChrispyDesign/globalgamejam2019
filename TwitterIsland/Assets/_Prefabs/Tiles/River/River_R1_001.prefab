@@ -172,6 +172,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4186621866830430}
+  - component: {fileID: 65332293244330538}
   m_Layer: 0
   m_Name: River_R1_001
   m_TagString: Untagged
@@ -915,3 +916,15 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1193735934295430}
   m_Mesh: {fileID: 4300000, guid: dc2f3e0fa206178449b23c692adbf106, type: 3}
+--- !u!65 &65332293244330538
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1356129543659376}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}

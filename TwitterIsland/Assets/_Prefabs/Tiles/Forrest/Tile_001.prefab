@@ -242,7 +242,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1449969075059310
 GameObject:
   m_ObjectHideFlags: 1
@@ -290,7 +290,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1485916382674706
 GameObject:
   m_ObjectHideFlags: 1
@@ -1207,7 +1207,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1706775571221768}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.75, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4592242011819964}
@@ -3233,6 +3233,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c98636223610474ba785bfb72015541, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isBuilding: 0
   decorationContainer: {fileID: 1706775571221768}
   cutPrefabs:
   - {fileID: 1992197079479874}
@@ -3265,9 +3266,30 @@ MonoBehaviour:
   - {fileID: 1694972249888606}
   - {fileID: 1711051859342508}
   - {fileID: 1860059705904318}
-  group1: []
-  group2: []
-  group3: []
+  group1:
+  - {fileID: 1528727196761098}
+  - {fileID: 1906765612886678}
+  - {fileID: 1279855505627792}
+  - {fileID: 1285131947787380}
+  - {fileID: 1519132973664378}
+  - {fileID: 1661678589886564}
+  group2:
+  - {fileID: 1969643818450120}
+  - {fileID: 1804514225543902}
+  - {fileID: 1787533871395364}
+  - {fileID: 1680511892855030}
+  - {fileID: 1904758399231346}
+  - {fileID: 1694972249888606}
+  group3:
+  - {fileID: 1782109769323660}
+  - {fileID: 1488972205157892}
+  - {fileID: 1286471902122436}
+  - {fileID: 1694972249888606}
+  - {fileID: 1711051859342508}
+  - {fileID: 1860059705904318}
+  - {fileID: 1413978711298306}
+  - {fileID: 1965906671032188}
+  - {fileID: 1328941188511718}
   growth1: 2
   growth2: 2
   growth3: 2

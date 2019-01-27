@@ -29,18 +29,18 @@ public class Rescorce_Display : MonoBehaviour
     private void Update()
     {
         if (actionPointsO != null)
-            actionPointsO.fillAmount = GameController.instance.actionPoints / 5;
+            actionPointsO.fillAmount = GameController.instance.actionPoints / 5f;
         if (actionPointsC != null)
-            actionPointsC.fillAmount = GameController.instance.actionPoints / 5;
+            actionPointsC.fillAmount = GameController.instance.actionPoints / 5f;
 
         if (GameController.worldValues.Count < 1)
             return;
 
-        human.fillAmount = GameController.worldValues["humans"] / 100;
-        food.fillAmount = GameController.worldValues["food"] / 100;
-        atmosphere.fillAmount = GameController.worldValues["atmosphere"] / 100;
-        animal.fillAmount = GameController.worldValues["animals"] / 100;
-        soil.fillAmount = GameController.worldValues["soil"] / 100;
+        human.fillAmount = GameController.worldValues["humans"] / 100f;
+        food.fillAmount = GameController.worldValues["food"] / 100f;
+        atmosphere.fillAmount = GameController.worldValues["atmosphere"] / 100f;
+        animal.fillAmount = GameController.worldValues["animals"] / 100f;
+        soil.fillAmount = GameController.worldValues["soil"] / 100f;
     }
 
     public void Open()

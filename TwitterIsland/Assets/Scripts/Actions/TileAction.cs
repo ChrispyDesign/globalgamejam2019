@@ -14,6 +14,7 @@ public abstract class TileAction
     protected List<System.Type> affectedTypes = new List<System.Type>();
     protected List<System.Func<bool>> conditionals = new List<System.Func<bool>>();
     protected int cost = 1;
+    protected int m_points;
 
     public abstract void Setup();
 
@@ -71,4 +72,5 @@ public abstract class TileAction
         return objects;
     }
 
+    public int GetPoints() { return m_points; }
 }

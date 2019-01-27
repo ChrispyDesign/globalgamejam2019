@@ -86,7 +86,7 @@ public class ServerCommunication : MonoBehaviour
             GameController.worldResources.Add("stone", m_nStone);
 
             // generate world
-            GameController.instance.Gener8World();
+            GameController.instance.GenerateWorld();
 
             yield break;
         }

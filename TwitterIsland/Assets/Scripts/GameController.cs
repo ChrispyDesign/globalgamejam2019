@@ -33,7 +33,6 @@ public class GameController : MonoBehaviour
 
     [Header("Percentage Range")]
     public float m_fHigh;
-    public float m_fMiddle;
     public float m_fLow;
 
     [Header("Growth Range")]
@@ -41,8 +40,16 @@ public class GameController : MonoBehaviour
     public float m_fGrowthMiddle;
     public float m_fGrowthLow;
 
+    [Header("Textures")]
+    public Texture m_Healthy;
+    public Texture m_Bad;
+    public Texture m_Worse;
+
     public List<BaseTile> allTiles;
     public Dictionary<string, TileAction> allActions;
+
+    [HideInInspector]
+    public int m_PlayerScore;
 
     [Header("Friggen tiles dude")]
     public List<BaseTile> tilePrefabs;
@@ -161,7 +168,7 @@ public class GameController : MonoBehaviour
                 if (worldValues["atmosphere"] >= m_fHigh)
                     m_HowManyTurnstoGrowTree = (int)m_fGrowthLow;
 
-                else if (worldValues["atmosphere"] >= m_fMiddle && worldValues["atmosphere"] < m_fMiddle && worldValues["atmosphere"] > m_fLow)
+                else if (worldValues["atmosphere"] > m_fLow && worldValues["atmosphere"] < m_fHigh)
                     m_HowManyTurnstoGrowTree = (int)m_fGrowthMiddle;
 
                 else if (worldValues["atmosphere"] < m_fLow)
@@ -182,7 +189,7 @@ public class GameController : MonoBehaviour
                 if (worldValues["soil"] >= m_fHigh)
                     m_HowManyTurnstoGrowCrop = (int)m_fGrowthLow;
 
-                else if (worldValues["soil"] >= m_fMiddle && worldValues["soil"] < m_fMiddle && worldValues["soil"] > m_fLow)
+                else if (worldValues["soil"] > m_fLow && worldValues["soil"] < m_fHigh)
                     m_HowManyTurnstoGrowCrop = (int)m_fGrowthMiddle;
 
                 else if (worldValues["soil"] < m_fLow)
@@ -358,6 +365,8 @@ public class GameController : MonoBehaviour
     {
         allActions = new Dictionary<string, TileAction>();
         allActions.Add("hunt", new HuntAction());
+        allActions.Add("choptrees", new ChopTreeAction());
+        allActions.Add("planttrees", new PlantTreeAction());
 
         foreach (var a in allActions.Values)
             a.Setup();
@@ -382,7 +391,7 @@ public class GameController : MonoBehaviour
     public void DoAction(BaseTile tile)
     {
         if (allActions.ContainsKey(selectedAction))
-            allActions[name].Perform(tile);
+            allActions[selectedAction].Perform(tile);
 
         selectedAction = "";
     }
@@ -428,7 +437,7 @@ public class GameController : MonoBehaviour
         GetAllTiles();
     }
 
-    public void Gener8World()
+    public void GenerateWorld()
     {
         foreach (var t in allTiles)
             Destroy(t.gameObject);
@@ -441,6 +450,47 @@ public class GameController : MonoBehaviour
         newRiver.transform.position = Vector3.zero;
 
         newRiver.GetComponent<RandomTileGenerator>().Generate();
+    }
+
+    public void SetWorldMaterial()
+    {
+        float avg = worldValues["atmosphere"] + worldValues["soil"] / 2;
+
+        var renderers = FindObjectsOfType<MeshRenderer>() as MeshRenderer[];
+
+        if (avg >= m_fHigh)
+        {
+            foreach (MeshRenderer r in renderers)
+            {
+                if (r.material.name == "Natural")
+                {
+                    r.material.SetTexture("_TextureSample0", m_Healthy);
+                }
+            }
+        }
+
+        else if (avg >= m_fLow && avg < m_fHigh)
+        {
+            foreach (MeshRenderer r in renderers)
+            {
+                if (r.material.name == "Natural")
+                {
+                    r.material.SetTexture("_TextureSample0", m_Bad);
+                }
+            }
+        }
+
+        else if (avg < m_fLow)
+        {
+            foreach (MeshRenderer r in renderers)
+            {
+                if (r.material.name == "Natural")
+                {
+                    r.material.SetTexture("_TextureSample0", m_Worse);
+                }
+            }
+        }
+
     }
 
 }

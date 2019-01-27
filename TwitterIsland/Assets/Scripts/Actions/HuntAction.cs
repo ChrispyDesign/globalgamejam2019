@@ -4,10 +4,6 @@ using UnityEngine;
 
 public class HuntAction : TileAction
 {
-    public void Start()
-    {
-
-    }
 
     public override void Setup()
     {

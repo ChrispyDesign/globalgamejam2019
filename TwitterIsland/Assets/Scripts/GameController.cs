@@ -202,6 +202,9 @@ public class GameController : MonoBehaviour
             }
         }
 
+        foreach (var t in allTiles)
+            t.ProcessEndOfTurn();
+
         if (!didWorldEnd)
         {
             // this sends ALL the current world info to the server :)
@@ -331,6 +334,17 @@ public class GameController : MonoBehaviour
         return result;
     }
 
+    public int GetBuildingCount()
+    {
+        int result = 0;
+
+        foreach (var t in allTiles)
+            if (t.isBuilding)
+                result++;
+
+        return result;
+    }
+
     public int GetCropCount()
     {
         int result = 0;
@@ -355,7 +369,7 @@ public class GameController : MonoBehaviour
     public void StartAction(string act)
     {
         if (!allActions.ContainsKey(act.ToLower()))
-            return ;
+            return;
 
         selectedAction = act.ToLower();
 

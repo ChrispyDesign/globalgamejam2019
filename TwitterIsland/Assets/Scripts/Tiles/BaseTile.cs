@@ -4,6 +4,7 @@ using UnityEngine;
 public abstract class BaseTile : MonoBehaviour
 {
 
+    public bool isBuilding = false;
     public GameObject decorationContainer;
 
     public List<BaseTile> GetAdjacentTiles(int casts = 12)

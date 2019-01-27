@@ -109,6 +109,7 @@ MonoBehaviour:
   - {fileID: 114952497790366678, guid: 244dd3aaef598e5449bc7343dab39789, type: 2}
   - {fileID: 114128487292765500, guid: 1247592ce144666489aaeebeab7371e6, type: 2}
   - {fileID: 114749652958337362, guid: d939a36eec419d9439221fd215624760, type: 2}
+  - {fileID: 114742653192720348, guid: 1f200dcd08c27d2458da1de3547abe92, type: 2}
   tileNames:
   - Grass
   - Forest

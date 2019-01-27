@@ -95,12 +95,15 @@ MonoBehaviour:
   m_HowManyTurnstoGrowTree: 3
   m_HowManyTurnstoGrowCrop: 4
   m_fHigh: 70
-  m_fMiddle: 50
   m_fLow: 30
   m_fGrowthHigh: 70
   m_fGrowthMiddle: 50
   m_fGrowthLow: 30
+  m_Healthy: {fileID: 0}
+  m_Bad: {fileID: 0}
+  m_Worse: {fileID: 0}
   allTiles: []
+  m_PlayerScore: 0
   tilePrefabs:
   - {fileID: 114381885228996778, guid: 34ecb2bf85b2fe045ade0e19512196d0, type: 2}
   - {fileID: 114908633953399294, guid: 4fe31f900e7a83d43b567aa8f59de3dc, type: 2}
@@ -111,6 +114,7 @@ MonoBehaviour:
   - {fileID: 114749652958337362, guid: d939a36eec419d9439221fd215624760, type: 2}
   - {fileID: 114742653192720348, guid: 1f200dcd08c27d2458da1de3547abe92, type: 2}
   - {fileID: 114282029976635836, guid: de491b48e9e7fe341ab5f3de667bfa88, type: 2}
+  - {fileID: 114069293075148692, guid: da763597b7e20724aa75961e624f5b6d, type: 2}
   tileNames:
   - Grass
   - Forest

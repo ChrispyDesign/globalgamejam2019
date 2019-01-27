@@ -16,6 +16,7 @@ public class ChopTreeAction : TileAction
 
     public override void Perform(BaseTile onTile)
     {
+        SoundManager.instance.Play("Action_Harvest");
         GameController.instance.m_PlayerScore += m_points;
         ((TreesTile)onTile).Cut();
     }

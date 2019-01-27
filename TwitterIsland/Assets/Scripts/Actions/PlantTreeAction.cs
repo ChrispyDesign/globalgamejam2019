@@ -14,6 +14,7 @@ public class PlantTreeAction : TileAction
 
     public override void Perform(BaseTile onTile)
     {
+        SoundManager.instance.Play("Action_Plant");
         GameController.instance.m_PlayerScore += m_points;
         GameController.instance.ReplaceTile(onTile, "Forest");
     }

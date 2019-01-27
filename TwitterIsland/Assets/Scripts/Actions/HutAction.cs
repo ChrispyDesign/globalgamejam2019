@@ -8,13 +8,13 @@ public class HutAction : TileAction
     {
         m_points = 100;
         type = ActionType.TILE_ACTION;
-        conditionals.Add(() => { return GameController.worldResources["wood"] > 0; });
+        //conditionals.Add(() => { return GameController.worldResources["wood"] > 0; });
     }
 
     public override void Perform(BaseTile onTile)
     {
         GameController.instance.m_PlayerScore += m_points;
         GameController.worldResources["wood"] -= 1;
-        GameController.instance.ReplaceTile(onTile, "Huts");
+        GameController.instance.ReplaceTile(onTile, "Hut");
     }
 }

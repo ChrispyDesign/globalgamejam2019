@@ -378,6 +378,9 @@ public class GameController : MonoBehaviour
         allActions.Add("hunt", new HuntAction());
         allActions.Add("choptrees", new ChopTreeAction());
         allActions.Add("planttrees", new PlantTreeAction());
+        allActions.Add("buildhut", new HutAction());
+        allActions.Add("cropharvest", new HarvestCrop());
+        allActions.Add("cropplant", new PlantCropAction());
 
         foreach (var a in allActions.Values)
             a.Setup();

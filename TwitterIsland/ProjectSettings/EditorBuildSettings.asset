@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/TEST_Cameron.unity
-    guid: 1d43700645b4470428968c6462ca1570
+    path: Assets/Scenes/Main.unity
+    guid: 71dfdb7971dd4bf4fbef6d9491758d23
   m_configObjects: {}

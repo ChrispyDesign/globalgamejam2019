@@ -1,0 +1,17 @@
+{
+  "name": "ggjserver",
+  "version": "0.0.0",
+  "description": "server for our global game jam 2019 game",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodejs index.js"
+  },
+  "author": "",
+  "license": "BSD-2-Clause",
+  "dependencies": {
+    "express": "~4.16.4",
+    "uuid": "~3.3.2",
+    "file-system": "~2.2.2"
+  }
+}

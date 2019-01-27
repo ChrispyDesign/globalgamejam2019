@@ -68,6 +68,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4718413820659954}
+  - component: {fileID: 65738041340490774}
   m_Layer: 0
   m_Name: River_S_003 (2)
   m_TagString: Untagged
@@ -319,6 +320,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4256249328820442}
+  - component: {fileID: 65694714736928266}
   m_Layer: 0
   m_Name: River_S_003
   m_TagString: Untagged
@@ -559,6 +561,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1574797347712396
+GameObject:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4212388956268354}
+  m_Layer: 0
+  m_Name: Spawn1 (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 7250588514170254948, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1587001559424572
 GameObject:
   m_ObjectHideFlags: 1
@@ -599,6 +616,7 @@ GameObject:
   - component: {fileID: 4622977511769474}
   - component: {fileID: 33924996229653276}
   - component: {fileID: 23281947532156300}
+  - component: {fileID: 64602579233808792}
   m_Layer: 0
   m_Name: Hex
   m_TagString: Untagged
@@ -815,7 +833,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4278651129792452}
   m_Layer: 0
-  m_Name: Spawn1 (1)
+  m_Name: Spawn1 (10)
   m_TagString: Untagged
   m_Icon: {fileID: 7250588514170254948, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -846,6 +864,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4367045500755622}
+  - component: {fileID: 65145583705635800}
   m_Layer: 0
   m_Name: River_S_003 (3)
   m_TagString: Untagged
@@ -1097,6 +1116,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4630413767995090}
+  - component: {fileID: 65341087497542124}
   m_Layer: 0
   m_Name: River_S_003 (1)
   m_TagString: Untagged
@@ -1464,6 +1484,19 @@ Transform:
   m_Father: {fileID: 4622977511769474}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 1.7400001, y: -1.7110001, z: -6.912}
+--- !u!4 &4212388956268354
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1574797347712396}
+  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
+  m_LocalPosition: {x: 7, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4812049247616114}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 180.00002, z: 0}
 --- !u!4 &4256249328820442
 Transform:
   m_ObjectHideFlags: 1
@@ -1511,11 +1544,11 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1736723450160792}
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
-  m_LocalPosition: {x: 7, y: 0, z: 0}
+  m_LocalPosition: {x: 0.21, y: 0, z: -4.82}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4812049247616114}
-  m_RootOrder: 1
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 180.00002, z: 0}
 --- !u!4 &4286314606442994
 Transform:
@@ -2060,7 +2093,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1402536157455696}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -1.8759439, y: -5.092545, z: -9.733753}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4256249328820442}
@@ -2082,7 +2115,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4701638583730746}
-  - {fileID: 4278651129792452}
+  - {fileID: 4212388956268354}
   - {fileID: 4815461512537236}
   - {fileID: 4054525242398870}
   - {fileID: 4731913766551194}
@@ -2091,6 +2124,7 @@ Transform:
   - {fileID: 4057054220839536}
   - {fileID: 4184412256188590}
   - {fileID: 4616882501849794}
+  - {fileID: 4278651129792452}
   m_Father: {fileID: 4807936756410026}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4563,6 +4597,68 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1976305562249176}
   m_Mesh: {fileID: 4300000, guid: af09459d1504010459bd30f165444a8a, type: 3}
+--- !u!64 &64602579233808792
+MeshCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1608153659387988}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_SkinWidth: 0.01
+  m_Mesh: {fileID: 4300000, guid: 9852cd72551baff459b47365097c0742, type: 3}
+--- !u!65 &65145583705635800
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1763407798573608}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2, y: 1, z: 2}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &65341087497542124
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1924941908406642}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2, y: 1, z: 2}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &65694714736928266
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1308413703559146}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2, y: 1, z: 2}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &65738041340490774
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1106322503524908}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2, y: 1, z: 2}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &114327505522194414
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4576,7 +4672,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnPoints:
   - {fileID: 4701638583730746}
-  - {fileID: 4278651129792452}
+  - {fileID: 4212388956268354}
   - {fileID: 4815461512537236}
   - {fileID: 4054525242398870}
   - {fileID: 4731913766551194}
@@ -4585,6 +4681,7 @@ MonoBehaviour:
   - {fileID: 4057054220839536}
   - {fileID: 4184412256188590}
   - {fileID: 4616882501849794}
+  - {fileID: 4278651129792452}
   tiles:
   - {fileID: 1280014478528072, guid: 34ecb2bf85b2fe045ade0e19512196d0, type: 2}
   - {fileID: 1280014478528072, guid: 4fe31f900e7a83d43b567aa8f59de3dc, type: 2}
@@ -4594,6 +4691,5 @@ MonoBehaviour:
   - {fileID: 1166858511503344, guid: 1247592ce144666489aaeebeab7371e6, type: 2}
   tileNames:
   - Forest
-  - Grass
-  - Crop
+  - Hut
   pieces: []

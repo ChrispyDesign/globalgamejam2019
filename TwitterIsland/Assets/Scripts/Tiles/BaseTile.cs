@@ -48,6 +48,11 @@ public abstract class BaseTile : MonoBehaviour
             Destroy(t.gameObject);
     }
 
+    public virtual int BuildingCount()
+    {
+        return 0;
+    }
+
     public string JsonStart()
     {
         return "{" + "\"type\":\"" + GetPrefabName() + "\"," +  "\"pos\":" + SerializationHelper.VectorToJson(transform.position);

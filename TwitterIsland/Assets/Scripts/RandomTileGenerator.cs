@@ -1,8 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class RandomTileGenerator : MonoBehaviour {
+public class RandomTileGenerator : MonoBehaviour
+{
 
     public List<Transform> spawnPoints;
     public List<GameObject> tiles;
@@ -29,9 +29,17 @@ public class RandomTileGenerator : MonoBehaviour {
 
         foreach (var points in spawnPoints)
         {
-            var toInstantiate = GameController.instance.GetTileVariation(tileNames[Random.Range(0, tileNames.Count)]);
-            BaseTile piece = Instantiate(toInstantiate, points.position, points.rotation);
-            pieces.Add(piece.gameObject);
+            RaycastHit hit;
+            if (!Physics.Raycast(points.position + Vector3.up*2.0f, Vector3.down, out hit))
+            {
+                var toInstantiate = GameController.instance.GetTileVariation(tileNames[Random.Range(0, tileNames.Count)]);
+                BaseTile piece = Instantiate(toInstantiate, points.position, points.rotation);
+                pieces.Add(piece.gameObject);
+            }
+            else
+            {
+                Debug.Log("Skipping spawning tile due to collision");
+            }
         }
 
     }

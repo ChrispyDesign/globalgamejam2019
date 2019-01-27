@@ -55,6 +55,8 @@ public class GameController : MonoBehaviour
     public List<BaseTile> tilePrefabs;
     public List<string> tileNames;
 
+
+
     Camera cam;
 
     private void Awake()
@@ -309,6 +311,10 @@ public class GameController : MonoBehaviour
                         ct.growthProgress = int.Parse(tile["growth"].ToString());
                         ct.UpdatePlants();
                         break;
+                    case "Hut":
+                        HutTile ht = (HutTile)newTile;
+                        ht.SetHutCount(int.Parse(tile["huts"].ToString()));
+                        break;
                 }
             }
 
@@ -347,7 +353,7 @@ public class GameController : MonoBehaviour
 
         foreach (var t in allTiles)
             if (t.isBuilding)
-                result++;
+                result += t.BuildingCount();
 
         return result;
     }

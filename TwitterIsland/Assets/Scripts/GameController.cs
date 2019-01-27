@@ -8,6 +8,7 @@ public class GameController : MonoBehaviour
     public int actionPoints = 5;
     public static string ourHandle = "loading...";
     public static GameController instance = null;
+    public static int riverPrefabUsed = -1;
 
     public static Dictionary<string, float> worldValues;
     public static Dictionary<string, int> worldResources;
@@ -220,10 +221,17 @@ public class GameController : MonoBehaviour
         boop.Add("worldValues", worldValues);
         boop.Add("worldResources", worldResources);
         boop.Add("tiles", TileListFromJson(TilesToJson()));
+        boop.Add("riverPrefab", riverPrefabUsed);
         string finalWorld = JsonConvert.SerializeObject(boop);
         finalWorld = finalWorld.Replace("\\\"", "\"");
         Debug.Log(finalWorld);
         return finalWorld;
+    }
+
+    public void MakeRiver(int idx)
+    {
+        var newRiver = Instantiate(riverPrefabs[idx]);
+        newRiver.transform.position = Vector3.zero;
     }
 
     public string TilesToJson()
@@ -411,7 +419,11 @@ public class GameController : MonoBehaviour
         foreach (var t in allTiles)
             Destroy(t.gameObject);
 
-        var newRiver = Instantiate(riverPrefabs[Random.Range(0, riverPrefabs.Count)]);
+        int idx = Random.Range(0, riverPrefabs.Count);
+
+        riverPrefabUsed = idx;
+
+        var newRiver = Instantiate(riverPrefabs[idx]);
         newRiver.transform.position = Vector3.zero;
 
         newRiver.GetComponent<RandomTileGenerator>().Generate();

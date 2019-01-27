@@ -110,6 +110,10 @@ public class ServerCommunication : MonoBehaviour
         {
             GameController.instance.LoadTilesFromJson(list["tiles"].ToString());
         }
+        if(list.ContainsKey("riverPrefab"))
+        {
+            GameController.instance.MakeRiver(int.Parse(list["riverPrefab"].ToString()));
+        }
     }
 
     public void SendWorldState()

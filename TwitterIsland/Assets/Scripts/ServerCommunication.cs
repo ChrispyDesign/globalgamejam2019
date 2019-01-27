@@ -30,6 +30,8 @@ public class ServerCommunication : MonoBehaviour
 
     private void Awake()
     {
+        GameController.worldValues = new Dictionary<string, float>();
+        GameController.worldResources = new Dictionary<string, int>();
         instance = this;
         StartCoroutine(MakeIdCurrent());
     }
@@ -73,8 +75,6 @@ public class ServerCommunication : MonoBehaviour
             // "humans", "food", "atmosphere", "soil", "animals", "buildings","crops","trees"
             // generate a new world
             // stuff
-            GameController.worldValues = new Dictionary<string, float>();
-            GameController.worldResources = new Dictionary<string, int>();
 
             GameController.worldValues.Add("humans", m_fHumanHealth);
             GameController.worldValues.Add("food", m_fFood);
@@ -110,7 +110,7 @@ public class ServerCommunication : MonoBehaviour
         {
             GameController.instance.LoadTilesFromJson(list["tiles"].ToString());
         }
-        if(list.ContainsKey("riverPrefab"))
+        if (list.ContainsKey("riverPrefab"))
         {
             GameController.instance.MakeRiver(int.Parse(list["riverPrefab"].ToString()));
         }
@@ -139,7 +139,7 @@ public class ServerCommunication : MonoBehaviour
     IEnumerator _ResetWorld()
     {
         string ourUrl = worldFinishedUrl + "?id=" + ourId + "&data=";
-        using(WWW www = new WWW(ourUrl))
+        using (WWW www = new WWW(ourUrl))
         {
             yield return www;
         }
@@ -153,7 +153,7 @@ public class ServerCommunication : MonoBehaviour
     IEnumerator _SetHandle()
     {
         string ourUrl = twitterHandleUrl;
-        using(WWW www = new WWW(ourUrl))
+        using (WWW www = new WWW(ourUrl))
         {
             yield return www;
             GameController.ourHandle = www.text;

@@ -12,9 +12,9 @@ public class TreesTile : BaseTile
     public List<GameObject> group2;
     public List<GameObject> group3;
 
-    public int growth1 = 2;
-    public int growth2 = 2;
-    public int growth3 = 2;
+    public int growth1 = 1;
+    public int growth2 = 1;
+    public int growth3 = 1;
 
     public int growthTurns = 0;
 
@@ -31,9 +31,8 @@ public class TreesTile : BaseTile
             growth1 = 0;
         else if (growth2 == 2)
             growth2 = 0;
-        else if (growth3 == 3)
-            growth3
-                 = 0;
+        else if (growth3 == 2)
+            growth3 = 0;
         UpdateTrees();
         // add wood
         if (applyWood)

@@ -36,8 +36,11 @@ public abstract class TileAction
 
     public bool CanPerform(BaseTile t)
     {
+        if (t == null)
+            return CanPerform();
+
         bool contains = false;
-        foreach(var f in affectedTypes)
+        foreach (var f in affectedTypes)
         {
             if (f == t.GetType())
                 contains = true;
@@ -51,11 +54,13 @@ public abstract class TileAction
         // check that there are tiles to be performed on
         if (GetAffectedTiles().Count == 0 && affectedTypes.Count > 0)
             return false;
-        
+
         // requires all of the conditionals to be true
-        foreach(var f in conditionals)
+        foreach (var f in conditionals)
             if (!f())
                 return false;
+
+        Debug.Log("yes");
 
         return true;
     }

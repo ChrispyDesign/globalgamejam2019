@@ -34,6 +34,7 @@ public class ServerCommunication : MonoBehaviour
         GameController.worldResources = new Dictionary<string, int>();
         instance = this;
         StartCoroutine(MakeIdCurrent());
+        SetHandle();
     }
 
     private void Start()
@@ -157,6 +158,7 @@ public class ServerCommunication : MonoBehaviour
         {
             yield return www;
             GameController.ourHandle = www.text;
+            GameController.instance.twitterHandle.text = www.text;
         }
     }
 

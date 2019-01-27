@@ -8,6 +8,8 @@ public class PlantTreeAction : TileAction
     {
         m_points = 10;
         type = ActionType.TILE_ACTION;
+
+        affectedTypes.Add(typeof(GrassTile));
     }
 
     public override void Perform(BaseTile onTile)

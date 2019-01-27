@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
 {
@@ -12,6 +13,9 @@ public class GameController : MonoBehaviour
 
     public static Dictionary<string, float> worldValues;
     public static Dictionary<string, int> worldResources;
+
+    public Text twitterHandle;
+    public Text scoreText;
 
     [Header("World Generation")]
     public List<GameObject> riverPrefabs;
@@ -75,6 +79,7 @@ public class GameController : MonoBehaviour
 
     private void Update()
     {
+        scoreText.text = m_PlayerScore.ToString();
         if (Input.GetKeyDown(KeyCode.Space))
             ServerCommunication.instance.SendWorldState();
 
@@ -343,7 +348,7 @@ public class GameController : MonoBehaviour
         int result = 0;
         var treez = GetTiles(typeof(TreesTile));
         foreach (var o in treez)
-            ((TreesTile)o).GetTreeCount();
+            result += ((TreesTile)o).GetTreeCount();
         return result;
     }
 
@@ -386,6 +391,11 @@ public class GameController : MonoBehaviour
         if (!allActions.ContainsKey(act.ToLower()))
             return;
 
+        if (actionPoints == 0)
+            return;
+
+        GameObject.FindObjectOfType<Rescorce_Display>().Close();
+
         selectedAction = act.ToLower();
 
         if (allActions[selectedAction].type == ActionType.SIMPLE_ACTION)
@@ -396,10 +406,13 @@ public class GameController : MonoBehaviour
 
     public void DoAction(BaseTile tile)
     {
-        if (allActions.ContainsKey(selectedAction))
+        Debug.Log(selectedAction);
+        if (allActions.ContainsKey(selectedAction) && allActions[selectedAction].CanPerform(tile))
+        {
             allActions[selectedAction].Perform(tile);
-
-        selectedAction = "";
+            selectedAction = "";
+            actionPoints--;
+        }
     }
 
     public BaseTile GetTileVariation(string tileName)

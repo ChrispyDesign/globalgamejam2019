@@ -8,7 +8,10 @@ public class ChopTreeAction : TileAction
     {
         m_points = 50;
         type = ActionType.TILE_ACTION;
-        conditionals.Add(() => { return GameController.instance.GetTreeCount() > 0; });
+
+        //conditionals.Add(() => { return GameController.instance.GetTreeCount() > 0; });
+
+        affectedTypes.Add(typeof(TreesTile));
     }
 
     public override void Perform(BaseTile onTile)

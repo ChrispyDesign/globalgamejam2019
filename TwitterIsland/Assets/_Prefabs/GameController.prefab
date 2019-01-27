@@ -56,6 +56,7 @@ MonoBehaviour:
   currentIdUrl: http://ggj.fsh.zone/getcode
   worldStateUrl: http://ggj.fsh.zone/getstate
   worldFinishedUrl: http://ggj.fsh.zone/update/
+  twitterHandleUrl: http://ggj.fsh.zone/gethandle/
   m_fHumanHealth: 50
   m_fFood: 50
   m_fAtmosphereHealth: 50
@@ -93,12 +94,12 @@ MonoBehaviour:
   m_nStoneValue: 10
   m_HowManyTurnstoGrowTree: 3
   m_HowManyTurnstoGrowCrop: 4
-  m_fHigh: 0
-  m_fMiddle: 0
-  m_fLow: 0
-  m_fGrowthHigh: 0
-  m_fGrowthMiddle: 0
-  m_fGrowthLow: 0
+  m_fHigh: 70
+  m_fMiddle: 50
+  m_fLow: 30
+  m_fGrowthHigh: 70
+  m_fGrowthMiddle: 50
+  m_fGrowthLow: 30
   allTiles: []
   tilePrefabs:
   - {fileID: 114381885228996778, guid: 34ecb2bf85b2fe045ade0e19512196d0, type: 2}
@@ -107,3 +108,9 @@ MonoBehaviour:
   - {fileID: 114690652082000552, guid: 6350e64332048254b8d19e65e4c98e95, type: 2}
   - {fileID: 114952497790366678, guid: 244dd3aaef598e5449bc7343dab39789, type: 2}
   - {fileID: 114128487292765500, guid: 1247592ce144666489aaeebeab7371e6, type: 2}
+  - {fileID: 114749652958337362, guid: d939a36eec419d9439221fd215624760, type: 2}
+  tileNames:
+  - Grass
+  - Forest
+  - Crop
+  selectedAction: 

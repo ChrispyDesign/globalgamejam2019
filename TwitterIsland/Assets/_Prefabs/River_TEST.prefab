@@ -4593,6 +4593,7 @@ MonoBehaviour:
   - {fileID: 1280014478528072, guid: 244dd3aaef598e5449bc7343dab39789, type: 2}
   - {fileID: 1166858511503344, guid: 1247592ce144666489aaeebeab7371e6, type: 2}
   tileNames:
-  - Grass
   - Forest
+  - Grass
+  - Crop
   pieces: []

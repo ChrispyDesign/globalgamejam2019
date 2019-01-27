@@ -119,6 +119,7 @@ public class ServerCommunication : MonoBehaviour
 
     IEnumerator _SendWorldState()
     {
+        GameController.instance.GetAllTiles();
         string ourUrl = worldFinishedUrl + "?id=" + ourId + "&data=" + GameController.instance.ToJson();
         using (WWW www = new WWW(ourUrl))
         {

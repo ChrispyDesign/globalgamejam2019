@@ -45,6 +45,7 @@ public class GameController : MonoBehaviour
 
     [Header("Friggen tiles dude")]
     public List<BaseTile> tilePrefabs;
+    public List<string> tileNames;
 
     Camera cam;
 
@@ -157,7 +158,7 @@ public class GameController : MonoBehaviour
             // Setting tree growth by atmosphere value
             {
                 if (worldValues["atmosphere"] >= m_fHigh)
-                    m_HowManyTurnstoGrowTree = (int)m_fGrowthLow; 
+                    m_HowManyTurnstoGrowTree = (int)m_fGrowthLow;
 
                 else if (worldValues["atmosphere"] >= m_fMiddle && worldValues["atmosphere"] < m_fMiddle && worldValues["atmosphere"] > m_fLow)
                     m_HowManyTurnstoGrowTree = (int)m_fGrowthMiddle;
@@ -170,15 +171,15 @@ public class GameController : MonoBehaviour
         //Soil Health
         {
             if (worldValues["animals"] > m_fHigh)
-                worldValues["soil"] += worldValues["animal"] * m_fSoilHealthValue; 
+                worldValues["soil"] += worldValues["animal"] * m_fSoilHealthValue;
             //Add buildings
-            else if(GetCropCount() > m_fHigh)
+            else if (GetCropCount() > m_fHigh)
                 worldValues["soil"] -= GetCropCount() * m_fSoilHealthValue;
 
             // Setting crop growth by atmosphere value
             {
                 if (worldValues["soil"] >= m_fHigh)
-                    m_HowManyTurnstoGrowCrop = (int)m_fGrowthLow; 
+                    m_HowManyTurnstoGrowCrop = (int)m_fGrowthLow;
 
                 else if (worldValues["soil"] >= m_fMiddle && worldValues["soil"] < m_fMiddle && worldValues["soil"] > m_fLow)
                     m_HowManyTurnstoGrowCrop = (int)m_fGrowthMiddle;
@@ -281,8 +282,14 @@ public class GameController : MonoBehaviour
                             t.growth3 = int.Parse(tile["g3"].ToString());
                             t.growthTurns = int.Parse(tile["growth"].ToString());
                         }
-                        catch (System.Exception ) { }
+                        catch (System.Exception) { }
                         t.UpdateTrees();
+                        break;
+                    case "Crop":
+                        CropTile ct = (CropTile)newTile;
+                        ct.growthState = int.Parse(tile["state"].ToString());
+                        ct.growthProgress = int.Parse(tile["growth"].ToString());
+                        ct.UpdatePlants();
                         break;
                 }
             }
@@ -321,7 +328,7 @@ public class GameController : MonoBehaviour
         int result = 0;
         var treez = GetTiles(typeof(CropTile));
         result = treez.Count * 40;
-            
+
         return result;
     }
 
@@ -337,24 +344,22 @@ public class GameController : MonoBehaviour
     public string selectedAction = "";
 
     // returns whether or not we're entering tile selection mode thing
-    public bool StartAction(string act)
+    public void StartAction(string act)
     {
         if (!allActions.ContainsKey(act.ToLower()))
-            return false;
+            return ;
 
         selectedAction = act.ToLower();
 
-        if(allActions[selectedAction].type == ActionType.SIMPLE_ACTION)
+        if (allActions[selectedAction].type == ActionType.SIMPLE_ACTION)
         {
             DoAction(null);
-            return false;
         }
-        return true;
     }
 
     public void DoAction(BaseTile tile)
     {
-        if(allActions.ContainsKey(selectedAction))
+        if (allActions.ContainsKey(selectedAction))
             allActions[name].Perform(tile);
 
         selectedAction = "";

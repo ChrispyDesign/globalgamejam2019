@@ -1,0 +1,132 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1102367051841452}
+  m_IsPrefabAsset: 1
+--- !u!1 &1102367051841452
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4470075712129956}
+  - component: {fileID: 114287316018282194}
+  - component: {fileID: 114496766161425806}
+  m_Layer: 0
+  m_Name: SoundManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4470075712129956
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1102367051841452}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114287316018282194
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1102367051841452}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 563b47d8021bcc34f942222b34bf1691, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audio:
+  - Name: Background_Music
+    clip: {fileID: 8300000, guid: bc828c386c006d241a9c744a3b4e5024, type: 3}
+    volume: 0.2
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - Name: Action_Build_Base
+    clip: {fileID: 8300000, guid: 7fc3d0ea8cd18e349839c88ddb54a29c, type: 3}
+    volume: 0.5
+    pitch: 0.5
+    loop: 0
+    source: {fileID: 0}
+  - Name: Action_Build_Mine
+    clip: {fileID: 8300000, guid: a8dc1c17599bb7348a234087c8177cbf, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - Name: Action_Build_Wood
+    clip: {fileID: 8300000, guid: 96979ef0bbcc16141a7fb4d9bd629e86, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - Name: Action_Harvest
+    clip: {fileID: 8300000, guid: c7c77b516a6909a48b20b9149ddca94b, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - Name: Action_Hunt
+    clip: {fileID: 8300000, guid: cbbae4b318f0c6c4e9bc1e4954a561cd, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - Name: Action_Plant
+    clip: {fileID: 8300000, guid: c1303c313d00e02488c3e9ca93478561, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - Name: Action_Pray
+    clip: {fileID: 8300000, guid: d2822bfc214fa0c4bb9822433baab0b0, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - Name: Action_Stone
+    clip: {fileID: 8300000, guid: 2a9165b88bc895e4b89f0265774e2706, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - Name: Action_Wood
+    clip: {fileID: 8300000, guid: 8297ea8668706124ea1e552c61175aa7, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - Name: Action_Build_Church
+    clip: {fileID: 8300000, guid: c13ef4596faa85e4197cfb8ce9dfbf1d, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+--- !u!114 &114496766161425806
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1102367051841452}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 835c9018eb177d243b2694adc2dc05dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

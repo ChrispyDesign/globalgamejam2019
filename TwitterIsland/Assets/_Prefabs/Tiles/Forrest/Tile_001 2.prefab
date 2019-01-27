@@ -1553,7 +1553,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1036686280922532}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 6.6559114, y: 2.5680146, z: 1.8470012}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4389095794941948}
@@ -3817,6 +3817,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c98636223610474ba785bfb72015541, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isBuilding: 0
   decorationContainer: {fileID: 1036686280922532}
   cutPrefabs:
   - {fileID: 1827249228021396}
@@ -3854,9 +3855,31 @@ MonoBehaviour:
   - {fileID: 1604342094057936}
   - {fileID: 1253417506221466}
   - {fileID: 1346604297547530}
-  group1: []
-  group2: []
-  group3: []
+  group1:
+  - {fileID: 1468406153138622}
+  - {fileID: 1937564976443056}
+  - {fileID: 1335202740428074}
+  - {fileID: 1437738472530014}
+  - {fileID: 1326555156535398}
+  - {fileID: 1536089399028698}
+  group2:
+  - {fileID: 1473323860575254}
+  - {fileID: 1942927049290926}
+  - {fileID: 1363808006092468}
+  - {fileID: 1796480571053396}
+  - {fileID: 1052552660788290}
+  - {fileID: 1146399237997356}
+  group3:
+  - {fileID: 1113849458882640}
+  - {fileID: 1609279453347670}
+  - {fileID: 1155423137099846}
+  - {fileID: 1945485542611950}
+  - {fileID: 1810167240636430}
+  - {fileID: 1716204578606956}
+  - {fileID: 1436174041473596}
+  - {fileID: 1604342094057936}
+  - {fileID: 1253417506221466}
+  - {fileID: 1346604297547530}
   growth1: 2
   growth2: 2
   growth3: 2

@@ -3379,6 +3379,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c98636223610474ba785bfb72015541, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isBuilding: 0
   decorationContainer: {fileID: 1388278718740210}
   cutPrefabs:
   - {fileID: 1423627113564592}
@@ -3391,6 +3392,14 @@ MonoBehaviour:
   - {fileID: 1456639752041280}
   - {fileID: 1013566137671110}
   - {fileID: 1847661208180800}
+  - {fileID: 1399484245942088}
+  - {fileID: 1575467859307552}
+  - {fileID: 1883410235705966}
+  - {fileID: 1890938543905474}
+  - {fileID: 1256803153689390}
+  - {fileID: 1262031589018660}
+  - {fileID: 1275848485212086}
+  - {fileID: 1292872899197318}
   growingPrefabs:
   - {fileID: 1399484245942088}
   - {fileID: 1575467859307552}
@@ -3413,9 +3422,28 @@ MonoBehaviour:
   - {fileID: 1268123299174798}
   - {fileID: 1680100828845922}
   - {fileID: 1806110815883916}
-  group1: []
-  group2: []
-  group3: []
+  group1:
+  - {fileID: 1399484245942088}
+  - {fileID: 1575467859307552}
+  - {fileID: 1883410235705966}
+  - {fileID: 1890938543905474}
+  - {fileID: 1256803153689390}
+  - {fileID: 1262031589018660}
+  - {fileID: 1292872899197318}
+  group2:
+  - {fileID: 1757565813980094}
+  - {fileID: 1923223976365742}
+  - {fileID: 1157245705399004}
+  - {fileID: 1324839765248336}
+  - {fileID: 1326666969774918}
+  - {fileID: 1756653565722388}
+  group3:
+  - {fileID: 1003108268078170}
+  - {fileID: 1387919543050066}
+  - {fileID: 1318298873532944}
+  - {fileID: 1268123299174798}
+  - {fileID: 1680100828845922}
+  - {fileID: 1806110815883916}
   growth1: 2
   growth2: 2
   growth3: 2

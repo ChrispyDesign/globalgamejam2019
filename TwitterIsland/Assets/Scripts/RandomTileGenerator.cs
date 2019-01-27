@@ -12,7 +12,7 @@ public class RandomTileGenerator : MonoBehaviour
     private void Start()
     {
         // don't generate on start - the game controller will handle it if we need to generate
-        //Generate();
+       // Generate();
     }
 
     public void Generate()

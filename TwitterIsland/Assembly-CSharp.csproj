@@ -60,7 +60,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Actions\ChopTreeAction.cs" />
     <Compile Include="Assets\Scripts\Actions\HuntAction.cs" />
+    <Compile Include="Assets\Scripts\Actions\PlantTreeAction.cs" />
     <Compile Include="Assets\Scripts\Actions\TileAction.cs" />
     <Compile Include="Assets\Scripts\Animal_Movement.cs" />
     <Compile Include="Assets\Scripts\GameController.cs" />
@@ -75,12 +77,13 @@
     <Compile Include="Assets\Scripts\Tiles\CropTile.cs" />
     <Compile Include="Assets\Scripts\Tiles\GrassTile.cs" />
     <Compile Include="Assets\Scripts\Tiles\HutTile.cs" />
+    <Compile Include="Assets\Scripts\Tiles\LumberYardTile.cs" />
+    <Compile Include="Assets\Scripts\Tiles\OreTile.cs" />
     <Compile Include="Assets\Scripts\Tiles\RiverTile.cs" />
     <Compile Include="Assets\Scripts\Tiles\SawmillTile.cs" />
     <Compile Include="Assets\Scripts\Tiles\TreesTile.cs" />
     <Compile Include="Assets\Scripts\Tiles\WaterTile.cs" />
     <None Include="Assets\Shaders\Nature.shader" />
-    <None Include="Assets\_Prefabs\Fuck Mr Sandles.txt" />
     <None Include="Assets\Shaders\Water.shader" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>C:/Users/s181313/Documents/Global Game Jam 2019/GameSVN/trunk/TwitterIsland/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
